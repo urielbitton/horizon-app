@@ -1,0 +1,19 @@
+.home-container {
+  background: #fafafa;
+  overflow: hidden;
+  height: 100vh;
+  transition: all 0.1s;
+}
+.viewable-content {
+  width: 100%;
+  height: calc(100vh - var(--navbarHeight) + 10px);
+  overflow: scroll;
+  transition: all 0.2s;
+  padding: 20px;
+}
+
+@media (max-width: 750px) {
+  .viewable-content {
+    padding: 20px 15px;
+  }
+}

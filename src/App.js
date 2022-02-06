@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+import StoreContextProvider from './app/store/store'
+import AppSwitcher from './AppSwitcher';
+import ErrorBoundary from './app/utils/ErrorBoundary'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <StoreContextProvider>
+        <Router>
+          <ErrorBoundary>
+            <AppSwitcher />
+          </ErrorBoundary>
+        </Router>
+      </StoreContextProvider>
     </div>
   );
-}
+} 
 
 export default App;

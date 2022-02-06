@@ -1,38 +1,210 @@
-.App {
-  text-align: center;
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito';
+  overflow: overlay; 
+}    
+  
+:root { 
+  --primary: #2f86ff;
+  --bg: #f8f8fc;
+  --red: #f1605e;
+  --green: #67cf00;
+  --orange: #f5c136;
+  --lightRed: #f1605e2a;
+  --blueShadow: 0 13px 15px 5px rgba(47, 81, 232, 0.12);
+  --shadow: 0 5px 10px rgba(0,0,0,0.1);
+  --navbarHeight: 80px;
+  --sidebarWidth: 250px;
+  --grayText: #696e93;
+  --white1: #fff;
+  --white2: #fff;
+  --dark1: #141719;
+  --dark2: #191e22;
+}  
+.grid {
+  width: 1320px; 
+  margin: auto;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.xgrid {
+  padding: 50px 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.spacer {
+  height: 50px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.spacer-s {
+  height: 30px;
+}
+.spacer-m {
+  height: 50px;
+}
+.spacer-l {
+  height: 100px;
+} 
+* {
+  position: relative;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+::selection {
+  background: var(--primary);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+} 
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+.hidescroll::-webkit-scrollbar {
+  display: none;
+} 
+img {
+  object-fit: cover;
+  max-width: 100%;
+}
+button {
+  outline: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #fff;
+  background: var(--primary);
+}
+button.shadow-hover:hover {
+  box-shadow: var(--blueShadow);
+}
+button.delete-btn {
+  background: var(--red);
+}
+button.delete-btn:hover {
+  box-shadow: 0 13px 15px 5px #f1605e15;
+}
+button:active {
+  transform: scale(0.97)
+}
+button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: auto;
+}
+a { 
+  text-decoration: none;
+  color: #111;
+}
+a.linkable:hover {
+  text-decoration: underline;
+}
+input, select, textarea {
+  padding: 13px 10px;
+  border: 1px solid #eee;
+  width: 100%;
+  outline: none;
+  font-size: 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  font-family: inherit;
+} 
+input:-webkit-autofill, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  box-shadow: 0 0 0 30px white inset;
+}
+input::placeholder, textarea::placeholder {
+  color: #bbb;
+}
+input:disabled {
+  background: #f1f1f1
+}
+hr {
+  border: none;
+}
+.linkable {
+  cursor: pointer;
+}
+.capitalize {
+  text-transform: capitalize
+}
+.app-container.noscroll {
+  overflow-y: hidden;
+  height: 100vh;
+}
+.commoninput h6 {
+  cursor: auto;
+}
+a.hide {
+  display: none;
+}
+.notifscont {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.flex {
+  display: flex;
+}
+.flexdown {
+  flex-direction: column;
+}
+.sb {
+  justify-content: space-between;
+}
+.ac {
+  align-items: center;
+}
+.flexcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.error-boundary {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.error-boundary h1 {
+  font-size: 40px;
+  color: #111;
+}
+.error-boundary h6 {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 40px;
+}
+.error-boundary img {
+  width: 500px;
+}
+.error-boundary button {
+  padding: 15px 25px;
+  font-size: 16px;
+  color: #fff;
+  background: var(--primary);
+}
+.error-boundary button:hover {
+  filter: brightness(110%);
+  box-shadow: 0 6px 10px #0088ff2f;
+}
+.error-boundary button i {
+  margin-right: 8px;
+}
+
+
+@media (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 4px;
   }
 }
