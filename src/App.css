@@ -6,13 +6,10 @@ html, body {
 }    
   
 :root { 
-  --primary: #2f86ff;
+  --primary: #ff1759;
+  --lightPrimary: #ff17592a;
   --bg: #f8f8fc;
-  --red: #f1605e;
-  --green: #67cf00;
-  --orange: #f5c136;
-  --lightRed: #f1605e2a;
-  --blueShadow: 0 13px 15px 5px rgba(47, 81, 232, 0.12);
+  --redShadow: 0 13px 15px 5px rgba(255, 23, 89, 0.12);
   --shadow: 0 5px 10px rgba(0,0,0,0.1);
   --navbarHeight: 80px;
   --sidebarWidth: 250px;
