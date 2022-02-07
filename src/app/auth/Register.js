@@ -172,13 +172,13 @@ export default function Register() {
               <div className="login-options">
                 <label>
                   <input type="checkbox"/>
-                  <span>Remember Me</span>
+                  <span>Remember Me</span> 
                 </label>
                 <Link to="/forgot-password" className="linkable">Forgot password?</Link>
               </div> : 
               <div style={{height:20}}/>
             }
-            <button className="submit-btn shadow-hover" onClick={handleSignup}>
+            <button className="submit-btn shadow-hover gradient" onClick={handleSignup}>
               Create Account
               <i className="fal fa-arrow-right"></i>
             </button>

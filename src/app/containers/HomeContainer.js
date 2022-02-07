@@ -11,6 +11,7 @@ import ChatMessages from '../pages/ChatMessages'
 import MyBusiness from '../pages/MyBusiness'
 import Analytics from '../pages/Analytics'
 import Settings from '../pages/Settings'
+import Support from "../pages/Support"
 
 export default function HomeContainer() {
 
@@ -46,6 +47,9 @@ export default function HomeContainer() {
           </Route>
           <Route exact path="/settings">
             <Settings />
+          </Route>
+          <Route exact path="/support">
+            <Support />
           </Route>
           <Route exact path="*" component={ErrorPage} />
         </Switch>

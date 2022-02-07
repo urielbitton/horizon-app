@@ -60,20 +60,19 @@ export default function Navbar() {
             setSlideNotifs={setSlideNotifs}
           />
         </div>
-        <div className="nav-profile-container">
+        <div 
+          className="nav-profile-container"
+          onClick={(e) => {
+            e.stopPropagation()
+            setSlideProfile(prev => !prev)}
+          }
+        >
+          <div className="img-container">
+            <img src={myUser?.photoURL?.length ? myUser?.photoURL : placeholder} alt=""/>
+          </div>
           <div className="text-info-container">
             <h5>{myUser?.firstName} {myUser?.lastName}</h5>
-            <Link to={`/`} className="linkable">My Profile</Link>
-          </div>
-          <div 
-            className="img-container" 
-            onClick={(e) => {
-              e.stopPropagation()
-              setSlideProfile(prev => !prev)}
-            }
-          >
-            <img src={myUser?.photoURL?.length ? myUser?.photoURL : placeholder} alt=""/>
-            <i className="fal fa-angle-down"></i>
+            <i className="fas fa-th"></i>
           </div>
           <div className={`profile-slide ${slideProfile ? "open" : ""}`}>
             <Link to="#"><i className="far fa-user"></i>My Account</Link>

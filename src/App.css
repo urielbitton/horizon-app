@@ -7,7 +7,7 @@ html, body {
   
 :root { 
   --primary: #131C55;
-  --lightPrimary: #131C552a;
+  --lightPrimary: #131c551a;
   --primaryShadow: 0 13px 15px 5px rgba(19, 28, 85, 0.12);
   --secondary: #13CBE6;
   --lightSecondary: #13CBE62a;
