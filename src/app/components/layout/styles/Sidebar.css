@@ -12,7 +12,7 @@
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: overlay;
 }
 .sidebar .top {
   display: flex;
@@ -125,17 +125,16 @@
     position: fixed;
     top: 0;
     left: -75vw;
-    width: 70vw;
+    width: 80vw;
     transition: all 0.3s;
-    z-index: 1100;
-    background: red;
+    z-index: 2100;
   }
   .sidebar.open {
     display: flex;
     top: 0;
     left: 0;
     height: 100vh;
-    box-shadow: 0 10px 15px 6px rgba(0,0,0,0.1);
+    box-shadow: 10px 0px 15px 6px rgba(0,0,0,0.2);
     transition: all 0.3s;
   }
   .sidebar .instructor-container img {
@@ -149,27 +148,24 @@
   }
   .sidebar .close-container {
     position: absolute;
-    top: 20px;
+    top: 21px;
     right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s;
-    background: #f1f1f1;
   }
   .sidebar .close-container i {
-    font-size: 25px;
-    color: #aaa;
-  }
-  .sidebar .close-container:hover {
-    background: var(--lightestblue);
+    font-size: 30px;
+    color: rgba(255,255,255,0.4);
+    transition: all 0.2s;
   }
   .sidebar .close-container:hover i {
-    color: var(--primary);
+    color: #fff;
   }
 
 }
