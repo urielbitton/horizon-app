@@ -104,7 +104,7 @@ export default function Login() {
               </label>
               <Link to="/forgot-password" className="linkable">Forgot password?</Link>
             </div>
-            <button className="submit-btn shadow-hover" onClick={handleLogin}>
+            <button className="submit-btn shadow-hover gradient" onClick={handleLogin}>
               Login
               <i className="fal fa-arrow-right"></i>
             </button>

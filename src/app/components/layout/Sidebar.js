@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './styles/Sidebar.css'
-import { menuLinks } from '../../data/menuLinks'
+import { menuLinks, footerLinks } from '../../data/menuLinks'
 import MenuLink from './MenuLink'
 import { useLocation } from 'react-router'
 import { StoreContext } from '../../store/store'
 import { useHistory } from "react-router-dom"
 import whiteLogo from '../../assets/imgs/white-logo.png'
+import AppButton from '../ui/AppButton'
 
 export default function Sidebar() {
 
@@ -14,9 +15,19 @@ export default function Sidebar() {
   const location = useLocation()
   const history = useHistory()
 
-  const menuRender = menuLinks
-  ?.filter(x => (myUser?.isInstructor ? x : !x.requireInstructor)  && (myUser?.isAdmin ? x : !x.requireAdmin))
+  const topMenuRender = menuLinks
+  ?.filter(x => (myUser?.isAdmin ? x : !x.requireAdmin))
   .map((link,i) => {
+    return <MenuLink 
+      link={link} 
+      tabOpen={tabOpen}
+      setTabOpen={setTabOpen}
+      i={i} 
+      key={i} 
+    />
+  })
+
+  const bottomMenuRender = footerLinks?.map((link,i) => {
     return <MenuLink 
       link={link} 
       tabOpen={tabOpen}
@@ -48,7 +59,19 @@ export default function Sidebar() {
             <h3>Horizon</h3>
           </div>
           <div className="menu">
-            {menuRender}
+            {topMenuRender}
+          </div>
+          <AppButton 
+            title="Start a Call"
+            secondaryBtn
+            leftIcon="fal fa-phone-plus"
+            onClick={() => null}
+            fullWidth
+          />
+        </div>
+        <div className="bottom">
+          <div className="menu">
+            {bottomMenuRender}
           </div>
         </div>
       </div>

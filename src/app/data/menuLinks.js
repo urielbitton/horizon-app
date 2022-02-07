@@ -34,11 +34,20 @@ export const menuLinks = [
     icon: 'fal fa-chart-bar', 
     url: '/analytics', 
     exact: true
-  },
+  }
+]
+
+export const footerLinks = [
   {
     name: 'Settings', 
     icon: 'fal fa-cog', 
     url: '/settings', 
+    exact: true
+  },
+  {
+    name: 'Support', 
+    icon: 'fal fa-user-headset', 
+    url: '/support', 
     exact: true
   }
 ]

@@ -16,10 +16,11 @@ html, body {
   --danger: #f1605e;
   --access: #67cf00;
   --warning: #f5c136;
-  --gradient: linear-gradient(108deg, rgba(255,23,89,1) 0%, rgba(171,29,192,1) 100%);
+  --gradient: linear-gradient(108deg, rgba(88,104,206,1) 0%, rgba(19,28,85,1) 100%);
+  --verticalGradient: linear-gradient(180deg, rgb(43, 56, 139) 0%, rgba(19,28,85,1) 100%);
   --shadow: 0 5px 10px rgba(0,0,0,0.1);
   --navbarHeight: 80px;
-  --sidebarWidth: 250px;
+  --sidebarWidth: 260px;
   --grayText: #696e93;
   --white1: #fff;
   --white2: #fff;
@@ -82,10 +83,13 @@ button {
   background: var(--primary);
 }
 button.shadow-hover:hover {
-  box-shadow: var(--blueShadow);
+  box-shadow: var(--primaryShadow);
+}
+button.gradient {
+  background: var(--gradient);
 }
 button.delete-btn {
-  background: var(--red);
+  background: var(--danger);
 }
 button.delete-btn:hover {
   box-shadow: 0 13px 15px 5px #f1605e15;

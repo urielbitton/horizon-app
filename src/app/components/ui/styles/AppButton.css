@@ -1,0 +1,30 @@
+.app-button {
+  border-radius: 5px;
+  user-select: none;
+}
+.app-button .left-icon {
+  margin-right: 10px;
+}
+.app-button .right-icon {
+  margin-left: 10px;
+}
+
+.app-button.primary-btn {
+  background: var(--primary);
+  color: #fff;
+}
+.app-button.primary-btn:hover {
+  filter: brightness(110%);
+}
+.app-button.secondary-btn {
+  background: var(--secondary);
+  color: #fff;
+}
+.app-button.secondary-btn:hover {
+  filter: brightness(110%);
+}
+.app-button.disabled {
+  background: #f1f1f1;
+  color: var(--graytext);
+  pointer-events: none;
+}

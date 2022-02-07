@@ -68,7 +68,7 @@
   justify-content: center;
 }
 .navbar .nav-icon-btn.nav-notifs .notifs-num {
-  background: var(--red)
+  background: var(--danger)
 }
 .navbar .nav-icon-btn.nav-messages .notifs-num {
   background: var(--primary)
