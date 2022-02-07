@@ -1,6 +1,6 @@
 .searchbar {
   background: #fff;
-  box-shadow: 0 7px 20px 0px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -11,13 +11,14 @@
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  background: var(--primary);
+  left: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 }
 .searchbar .icon-container i {
-  color: #fff;
+  color: var(--primary);
   font-size: 15px;
 }
 .searchbar .appinput {

@@ -6,6 +6,7 @@ import { auth } from '../../firebase/fire'
 import NotificationsDropdown from "./NotificationsDropdown"
 import { useLocation } from "react-router-dom"
 import placeholder from '../../assets/imgs/placeholder.jpg'
+import SearchBar from '../ui/SearchBar'
 
 export default function Navbar() {
 
@@ -51,7 +52,7 @@ export default function Navbar() {
         >
           <i className="fal fa-bars"></i>
         </div>
-        <h4>Navbar</h4>
+        <SearchBar showIcon />
       </div>
       <div className="side right">
         <div className={`notifications-dropdown ${slideNotifs ? "open" : ""}`}>

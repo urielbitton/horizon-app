@@ -1,7 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { StoreContext } from '../store/store'
 import './styles/Auth.css'
-import firebase from 'firebase'
 import { db, auth } from '../firebase/fire'
 import { AppInput } from '../components/ui/AppInputs'
 import { Link } from 'react-router-dom'
@@ -13,7 +12,6 @@ import googleIcon from '../assets/imgs/google-icon.png'
 export default function Register() {
 
   const {setLogAuth, loggingAuth, setLoggingAuth, setAUser, setMyUser} = useContext(StoreContext)
-  const [fullName, setFullName] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('') 
@@ -45,10 +43,10 @@ export default function Register() {
       auth.onAuthStateChanged(user => {
         if(user && !loggingAuth) {
           user.updateProfile({
-            displayName: `${fullName?.split(' ')[0]} ${fullName?.split(' ')[1]}`,
+            displayName: `${firstName} ${lastName}`,
             photoURL: 'https://i.imgur.com/D4fLSKa.png'
           })
-          setDB('users', user.uid, {
+          setDB(`users`, user.uid, {
             firstName,
             lastName,
             email,
@@ -59,20 +57,18 @@ export default function Register() {
             country: '',
             postCode: '',
             companyName: '',
-            aboutMe: '',
+            about: '',
             website: '',
             photoURL: 'https://i.imgur.com/D4fLSKa.png',
             userID: user.uid,
             dateCreated: new Date(),
-            isInstructor: false,
-            isStudent: true,
             isProMember: false
           }).then(() => { 
             const notifID = db.collection('users').doc(user.uid).collection('notifications').doc().id
             addDB(`users/${user.uid}/notifications`, {
               dateAdded: new Date(),
               notifID,
-              text: 'Welcome to Solaris! Discover more about Solaris by clicking here.',
+              text: 'Welcome to Horizon! Discover more about Horizon by clicking here.',
               title: `Welcome ${user?.displayName.split(' ')[0]}`,
               type: 'welcome',
               url: '/welcome',
@@ -81,13 +77,13 @@ export default function Register() {
             .then(() => {
               addDB(`users/${user?.uid}/emails`, {
                 email: user.email,
-                subject: 'Welcome To Solaris',
-                html: `Hi ${user.displayName}!<br/><br/>We would like to welcome you to Solaris, and thank you for choosing to enhance your education on
-                our platform. We are confident you will learn tons of new material, pick up useful skills and improve your career experience very quickly.
-                <br/>To get started, visit our home page <a href="https://solaris-app.vercel.app">here</a> where you will find the latest courses to browse
-                Optionally, you can visit our welcome page <a href="https://solaris-app.vercel.app/welcome">here</a>.<br.>Lastly, you can view your account
-                settings <a href="https://solaris-app.vercel.app/my-account">here</a>.<br/><br/>We look forward to hearing your success story!<br/><br/>Best,
-                <br/><br/>The Solaris Team`,
+                subject: 'Welcome To Horizon',
+                html: `Hi ${user.displayName}!<br/><br/>We would like to welcome you to Horizon, and thank you for choosing to enhance your business on
+                our platform.
+                <br/>To get started, visit our home page <a href="https://Horizon-app.vercel.app">here</a>
+                Optionally, you can visit our welcome page <a href="https://horizon-app.vercel.app/welcome">here</a>.<br.>Lastly, you can view your account
+                settings <a href="https://Horizon-app.vercel.app/my-account">here</a>.<br/><br/>We look forward to hearing your success story!<br/><br/>Best,
+                <br/><br/>The Horizon Team`,
                 dateSent: new Date()
               })
             })
@@ -162,7 +158,7 @@ export default function Register() {
             </div>
             <AppInput 
               title="Email" 
-              placeholder="jane@solaris.com"
+              placeholder="jane@Horizon.com"
               onChange={(e) => setEmail(e.target.value)}
             />
             <h6 className="email-error">{emailError}</h6>
@@ -194,14 +190,8 @@ export default function Register() {
         </div>
       </div>
       <div className="login-cover">
-        <h1>Solaris</h1>
-        <div className="sliding-text">
-          <h3>Education is the key to success</h3>
-          <h6>Choose from our selection of over 100+ dynamic courses.</h6>
-          <div className="nav-bubbles">
-            <div className="active"/><div/><div/>
-          </div>
-        </div>
+        <h1>Welcome to Horizon</h1>
+        <h5>Join our platform of idenpendant business owners<br/>to boost your communication now.</h5>
       </div>
     </div>
   )

@@ -1,15 +1,22 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito';
+  font-family: 'Lato';
   overflow: overlay; 
 }    
   
 :root { 
-  --primary: #ff1759;
-  --lightPrimary: #ff17592a;
+  --primary: #131C55;
+  --lightPrimary: #131C552a;
+  --primaryShadow: 0 13px 15px 5px rgba(19, 28, 85, 0.12);
+  --secondary: #13CBE6;
+  --lightSecondary: #13CBE62a;
+  --secondaryShadow: 0 13px 15px 5px rgba(19, 203, 230, 0.12);
   --bg: #f8f8fc;
-  --redShadow: 0 13px 15px 5px rgba(255, 23, 89, 0.12);
+  --danger: #f1605e;
+  --access: #67cf00;
+  --warning: #f5c136;
+  --gradient: linear-gradient(108deg, rgba(255,23,89,1) 0%, rgba(171,29,192,1) 100%);
   --shadow: 0 5px 10px rgba(0,0,0,0.1);
   --navbarHeight: 80px;
   --sidebarWidth: 250px;

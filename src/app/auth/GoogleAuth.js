@@ -10,7 +10,7 @@ export const googleAuth = (setMyUser) => {
       if(res.additionalUserInfo.isNewUser) {
         auth.onAuthStateChanged(user => {
           if(user) {
-            setDB(`users/${user.uid}`, {
+            setDB(`users`, user.uid, {
               userID: user.uid,
               firstName: res.additionalUserInfo.profile?.given_name,
               lastName: res.additionalUserInfo.profile?.family_name,

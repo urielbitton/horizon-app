@@ -5,6 +5,7 @@ import MenuLink from './MenuLink'
 import { useLocation } from 'react-router'
 import { StoreContext } from '../../store/store'
 import { useHistory } from "react-router-dom"
+import whiteLogo from '../../assets/imgs/white-logo.png'
 
 export default function Sidebar() {
 
@@ -43,7 +44,8 @@ export default function Sidebar() {
       <div className="sidebar-scroll hidescroll">
         <div className="top">
           <div className="logo-container">
-            <h3>Sidebar</h3>
+            <img src={whiteLogo} alt="" />
+            <h3>Horizon</h3>
           </div>
           <div className="menu">
             {menuRender}

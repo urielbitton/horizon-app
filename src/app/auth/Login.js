@@ -1,12 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { StoreContext } from '../store/store'
-import firebase from 'firebase'
 import './styles/Auth.css'
 import { AppInput } from '../components/ui/AppInputs'
 import { Link } from 'react-router-dom'
 import { googleAuth } from "./GoogleAuth"
 import googleIcon from '../assets/imgs/google-icon.png'
 import { auth } from '../firebase/fire'
+import logo from '../assets/imgs/logo2.png'
 
 export default function Login() {
 
@@ -64,9 +64,13 @@ export default function Login() {
 
   return (
     <div className="login-page">
+      <div className="login-cover">
+        <h1>Welcome to Horizon</h1>
+        <h5>Join our platform of idenpendant business owners<br/>to boost your communication now.</h5>
+      </div>
       <div className="login-info">
         <div className="container">
-          <img src="" className="logo" alt="logo"/>
+          <img src={logo} className="logo" alt="logo"/>
           <h4>Login</h4>
           <h6>Login to discover newly added courses every week.</h6>
           <div className="social-logins">
@@ -79,7 +83,7 @@ export default function Login() {
           <form onSubmit={(e) => handleSubmit(e)}>
             <AppInput 
               title="Email" 
-              placeholder="jane@solaris.com"
+              placeholder="jane@horizon.com"
               onChange={(e) => setEmail(e.target.value)}
             />
             <h6 className="email-error">{emailError}</h6>
@@ -109,16 +113,6 @@ export default function Login() {
               <Link to="/register" onClick={() => setLoggingAuth(false)}>Create An Account</Link>
             </small>
           </form>
-        </div>
-      </div>
-      <div className="login-cover">
-        <h1>App</h1>
-        <div className="sliding-text">
-          <h3>Education is the key to success</h3>
-          <h6>Choose from our selection of over 100+ dynamic courses.</h6>
-          <div className="nav-bubbles">
-            <div className="active"/><div/><div/>
-          </div>
         </div>
       </div>
     </div>
