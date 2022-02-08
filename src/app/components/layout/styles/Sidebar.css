@@ -124,9 +124,9 @@
   .sidebar {
     position: fixed;
     top: 0;
-    left: -75vw;
+    left: -85vw;
     width: 80vw;
-    transition: all 0.3s;
+    transition: all 0.4s;
     z-index: 2100;
   }
   .sidebar.open {
@@ -135,7 +135,6 @@
     left: 0;
     height: 100vh;
     box-shadow: 10px 0px 15px 6px rgba(0,0,0,0.2);
-    transition: all 0.3s;
   }
   .sidebar .instructor-container img {
     width: 200px;

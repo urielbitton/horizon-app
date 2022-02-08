@@ -1,0 +1,140 @@
+.app-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.app-table header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--grayBorder);
+}
+.app-table header h4.title {
+  font-size: 19px;
+  color: #444;
+  font-weight: 600;
+}
+.app-table header > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.app-table header .appselect {
+  display: flex;
+  align-items: center;
+}
+.app-table header .appselect h6 {
+  flex-basis: 70px;
+  font-size: 14px;
+  color: #aaa;
+  font-weight: 400;
+}
+.app-table header select {
+  border: none;
+  color: #777;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.app-table .body {
+  padding: 20px;
+  width: 100%;
+}
+.app-table .body .table-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app-table .body .table-head h5 {
+  text-transform: uppercase;
+  color: #aaa;
+  font-weight: 600;
+  font-size: 12px;
+}
+.app-table .body .table-body {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  max-height: 500px;
+  overflow: overlay;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.app-table .body .table-body::-webkit-scrollbar {
+  width: 4px;
+}
+.app-table .body .table-body::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}
+.app-table .body .table-body::-webkit-scrollbar-track {
+  background: #e1e1e1;
+}
+.app-table .body .table-body .row-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+.app-table .body .table-body .row-item > div,
+.app-table .body .table-head h5 {
+  flex-basis: 16%;
+}
+.app-table .body .table-body .row-item img {
+  border-radius: 100%;
+  height: 35px;
+  width: 35px;
+}
+.app-table .body .table-body .row-item .profile-img-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.app-table .body .table-body .row-item h6 {
+  color: var(--grayText);
+  font-weight: 600;
+  font-size: 13px;
+}
+.app-table .body .table-body .row-item .options-container {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-table .body .table-body .row-item .action-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.app-table .body .table-body .row-item .action-icons i {
+  font-size: 15px;
+  color: var(--primary);
+  cursor: pointer;
+}
+.app-table .body .table-body .row-item .options-container i {
+  font-size: 22px;
+  color: var(--grayText);
+}
+.app-table .body .table-body .row-item > div.small-flex,
+.app-table .body .table-head h5.small-flex {
+  flex-basis: 100px;
+}
+.app-table .body .table-body .row-item > div.medium-flex,
+.app-table .body .table-head h5.medium-flex {
+  flex-basis: 250px;
+}
+.app-table .body .table-body .row-item > div.large-flex,
+.app-table .body .table-head h5.large-flex {
+  flex-basis: 400px;
+}

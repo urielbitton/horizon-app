@@ -8,6 +8,7 @@ import Home from '../pages/Home'
 import VideoCalls from '../pages/VideoCalls'
 import VoiceCalls from '../pages/VoiceCalls'
 import ChatMessages from '../pages/ChatMessages'
+import Contacts from '../pages/Contacts'
 import MyBusiness from '../pages/MyBusiness'
 import Analytics from '../pages/Analytics'
 import Settings from '../pages/Settings'
@@ -38,6 +39,9 @@ export default function HomeContainer() {
           </Route>
           <Route exact path="/chat-messages">
             <ChatMessages />
+          </Route>
+          <Route exact path="/contacts">
+            <Contacts />
           </Route>
           <Route exact path="/my-business">
             <MyBusiness />

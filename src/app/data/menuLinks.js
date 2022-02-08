@@ -24,6 +24,12 @@ export const menuLinks = [
     exact: true
   },
   {
+    name: 'Contacts', 
+    icon: 'fal fa-user-friends', 
+    url: '/contacts', 
+    exact: true
+  },
+  {
     name: 'My Business', 
     icon: 'fal fa-briefcase', 
     url: '/my-business', 

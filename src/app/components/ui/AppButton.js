@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 export default function AppButton(props) {
 
   const { title, url='#', leftIcon, rightIcon, onClick, className,
-    secondaryBtn, disabled, fullWidth } = props
+    secondaryBtn, disabled, fullWidth, gradientBtn, activeShadow } = props
 
   return (
     <Link 
@@ -16,8 +16,9 @@ export default function AppButton(props) {
         className={`
           app-button 
           ${className ?? ""} 
-          ${secondaryBtn ? "secondary-btn" : "primary-btn"}
+          ${secondaryBtn ? "secondary-btn" : gradientBtn ? 'gradient' : "primary-btn"}
           ${disabled ? "disabled" : ''}
+          ${activeShadow ? 'active-shadow' : ''}
         `}
         onClick={() => onClick && onClick()}
       >

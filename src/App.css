@@ -9,19 +9,22 @@ html, body {
   --primary: #131C55;
   --lightPrimary: #131c551a;
   --primaryShadow: 0 13px 15px 5px rgba(19, 28, 85, 0.12);
+  --btnShadow: 0 10px 12px 2px rgba(25, 37, 117, 0.22);
   --secondary: #13CBE6;
   --lightSecondary: #13CBE62a;
   --secondaryShadow: 0 13px 15px 5px rgba(19, 203, 230, 0.12);
   --bg: #f8f8fc;
+  --grayBorder: #e1e5eb;
+  --grayText: #696e93;
   --danger: #f1605e;
   --access: #67cf00;
   --warning: #f5c136;
   --gradient: linear-gradient(108deg, rgba(88,104,206,1) 0%, rgba(19,28,85,1) 100%);
   --verticalGradient: linear-gradient(180deg, rgb(43, 56, 139) 0%, rgba(19,28,85,1) 100%);
+  --btnGradient: linear-gradient(170deg, rgb(58, 75, 180) 0%, rgba(19,28,85,1) 100%);
   --shadow: 0 5px 10px rgba(0,0,0,0.1);
   --navbarHeight: 80px;
   --sidebarWidth: 260px;
-  --grayText: #696e93;
   --white1: #fff;
   --white2: #fff;
   --dark1: #141719;
@@ -82,11 +85,12 @@ button {
   color: #fff;
   background: var(--primary);
 }
-button.shadow-hover:hover {
-  box-shadow: var(--primaryShadow);
+button.shadow-hover:hover,
+button.active-shadow {
+  box-shadow: var(--btnShadow);
 }
 button.gradient {
-  background: var(--gradient);
+  background: var(--btnGradient);
 }
 button.delete-btn {
   background: var(--danger);
