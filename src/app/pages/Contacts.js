@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './styles/Contacts.css'
 import AppTable from "../components/ui/AppTable"
 import { AppSelect } from '../components/ui/AppInputs'
 import AppButton from '../components/ui/AppButton'
-import { contacts, contactHeaders } from "../data/contacts"
+import { contactHeaders } from "../data/contacts"
+import { getContactsByUserID } from "../services/userServices"
+import { StoreContext } from '../store/store'
+import { convertFireDateToString } from '../utils/dateUtils'
 
 export default function Contacts() {
 
+  const { myUser } = useContext(StoreContext)
+  const [contacts, setContacts] = useState([])
   const [sort, setSort] = useState('')
 
   const sortOptions = [
@@ -38,13 +43,17 @@ export default function Contacts() {
       <div className="small-flex"><h6>{row.leadScore}</h6></div>
       <div><h6>{row.email}</h6></div>
       <div><h6>{row.phone}</h6></div>
-      <div><h6>{row.dateAdded}</h6></div>
+      <div><h6>{convertFireDateToString(row.dateAdded)}</h6></div>
       <div className="action-icons small-flex">
         <i className="far fa-video"></i>
         <i className="far fa-phone"></i>
       </div>
     </div>
   })
+
+  useEffect(() => {
+    getContactsByUserID(myUser?.userID, setContacts, 25)
+  },[myUser])
 
   return (
     <div className="contacts-page">
