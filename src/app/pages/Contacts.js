@@ -49,7 +49,7 @@ export default function Contacts() {
       <div className="action-icons small-flex">
         <i 
           className="far fa-video"
-          onClick={() => history.push(`/video-call/test-id`)}
+          onClick={() => history.push(`/video-call/hytk-iouu-900j`)}
         ></i>
         <i className="far fa-phone"></i>
       </div>
