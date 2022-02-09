@@ -1,0 +1,16 @@
+.meeting-room-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; 
+  background: var(--grayBg);
+  z-index: 3000;
+}
+.meeting-room-page > .fa-arrow-left {
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  top: 20px;
+  left: 20px;
+}

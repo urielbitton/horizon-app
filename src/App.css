@@ -14,6 +14,7 @@ html, body {
   --lightSecondary: #13CBE62a;
   --secondaryShadow: 0 13px 15px 5px rgba(19, 203, 230, 0.12);
   --bg: #f8f8fc;
+  --grayBg: #212032;
   --grayBorder: #e1e5eb;
   --grayText: #696e93;
   --danger: #f1605e;
