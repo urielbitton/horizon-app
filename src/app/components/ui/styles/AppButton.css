@@ -9,18 +9,23 @@
   margin-left: 10px;
 }
 
-.app-button.primary-btn {
+.app-button.primaryBtn {
   background: var(--primary);
   color: #fff;
 }
-.app-button.primary-btn:hover {
-  filter: brightness(110%);
-}
-.app-button.secondary-btn {
+.app-button.secondaryBtn {
   background: var(--secondary);
   color: #fff;
 }
-.app-button.secondary-btn:hover {
+.app-button.ternaryBtn {
+  background: var(--ternary);
+}
+.app-button.gradientBtn {
+  background: var(--btnGradient);
+}
+.app-button.primaryBtn:hover,
+.app-button.secondaryBtn:hover,
+.app-button.ternaryBtn:hover {
   filter: brightness(110%);
 }
 .app-button.disabled {

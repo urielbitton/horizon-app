@@ -47,10 +47,7 @@ export default function Contacts() {
       <div><h6>{row.phone}</h6></div>
       <div><h6>{convertFireDateToString(row.dateAdded)}</h6></div>
       <div className="action-icons small-flex">
-        <i 
-          className="far fa-video"
-          onClick={() => history.push(`/video-call/hytk-iouu-900j`)}
-        ></i>
+        <i className="far fa-video"></i>
         <i className="far fa-phone"></i>
       </div>
     </div>
@@ -76,7 +73,7 @@ export default function Contacts() {
           <AppButton
             title="Add"
             rightIcon="fal fa-plus"
-            gradientBtn
+            buttonType="gradientBtn"
             activeShadow
           />
         }

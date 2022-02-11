@@ -7,6 +7,7 @@ import { googleAuth } from "./GoogleAuth"
 import googleIcon from '../assets/imgs/google-icon.png'
 import { auth } from '../firebase/fire'
 import logo from '../assets/imgs/logo2.png'
+import AppButton from '../components/ui/AppButton'
 
 export default function Login() {
 
@@ -104,10 +105,13 @@ export default function Login() {
               </label>
               <Link to="/forgot-password" className="linkable">Forgot password?</Link>
             </div>
-            <button className="submit-btn shadow-hover gradient" onClick={handleLogin}>
-              Login
-              <i className="fal fa-arrow-right"></i>
-            </button>
+            <AppButton
+              title="Login"
+              rightIcon="fal fa-arrow-right"
+              onClick={() => handleLogin()}
+              buttonType="gradientBtn"
+              className="shadow-hover submit-btn"
+            />
             <small className="no-account-text">
               Don't have an account yet? 
               <Link to="/register" onClick={() => setLoggingAuth(false)}>Create An Account</Link>

@@ -50,18 +50,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function JoiningScreen({
-  participantName,
-  setParticipantName,
-  meetingId,
-  setMeetingId,
-  setToken,
-  setWebcamOn,
-  setMicOn,
-  micOn,
-  webcamOn,
-  onClickStartMeeting,
-}) {
+export function JoiningScreen(props) {
+
+  const { participantName, setParticipantName, meetingId, setMeetingId, setToken, 
+    setWebcamOn, setMicOn, micOn, webcamOn, onClickStartMeeting } = props
+
   const [readyToJoin, setReadyToJoin] = useState(false);
   const videoPlayerRef = useRef();
   const theme = useTheme();
@@ -297,7 +290,7 @@ export function JoiningScreen({
               }}
             />
           </Box>
-        ) : (
+        ) : ( //if not ready to join - readyToJoin === false
           <MeetingDetailsScreen
             onClickJoin={async (id) => {
               const token = await getToken();

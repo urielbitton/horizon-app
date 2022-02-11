@@ -13,8 +13,8 @@ import MyBusiness from '../pages/MyBusiness'
 import Analytics from '../pages/Analytics'
 import Settings from '../pages/Settings'
 import Support from "../pages/Support"
-import VideoCallScreen from "../pages/VideoCallScreen"
-import MeetingRoom from "../pages/MeetingRoom"
+import CreateAMeeting from '../pages/CreateAMeeting'
+import JoinAMeeting from '../pages/JoinAMeeting'
 
 export default function HomeContainer() {
 
@@ -57,11 +57,11 @@ export default function HomeContainer() {
           <Route exact path="/support">
             <Support />
           </Route>
-          <Route exact path="/video-call/:meetingID">
-            <VideoCallScreen />
+          <Route exact path="/create-meeting">
+            <CreateAMeeting />
           </Route>
-          <Route exact path="/video-call/meeting-room/:meetingID">
-            <MeetingRoom />
+          <Route exact path="/join-meeting">
+            <JoinAMeeting />
           </Route>
           <Route exact path="*" component={ErrorPage} />
         </Switch>

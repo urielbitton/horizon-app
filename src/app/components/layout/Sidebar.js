@@ -62,10 +62,17 @@ export default function Sidebar() {
             {topMenuRender}
           </div>
           <AppButton 
-            title="Start a Call"
-            secondaryBtn
+            title="Create A Meeting"
+            buttonType="secondaryBtn"
             leftIcon="fal fa-phone-plus"
-            onClick={() => null}
+            url="/create-meeting"
+            fullWidth
+          />
+          <AppButton 
+            title="Join A Meeting"
+            buttonType="ternaryBtn"
+            leftIcon="fal fa-phone"
+            url="/join-meeting"
             fullWidth
           />
         </div>

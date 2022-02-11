@@ -8,6 +8,8 @@ import { useHistory } from 'react-router'
 import { addDB, setDB } from '../services/CrudDB'
 import { googleAuth } from "./GoogleAuth"
 import googleIcon from '../assets/imgs/google-icon.png'
+import AppButton from "../components/ui/AppButton"
+import logo from '../assets/imgs/logo2.png'
 
 export default function Register() {
 
@@ -133,7 +135,7 @@ export default function Register() {
     <div className="login-page register-page">
       <div className="login-info">
         <div className="container">
-          <img src="" className="logo" alt="logo"/>
+          <img src={logo} className="logo" alt="logo"/>
           <h4>Register</h4>
           <h6>Discover our wide variety of courses with a free account.</h6>
           <div className="social-logins">
@@ -178,10 +180,13 @@ export default function Register() {
               </div> : 
               <div style={{height:20}}/>
             }
-            <button className="submit-btn shadow-hover gradient" onClick={handleSignup}>
-              Create Account
-              <i className="fal fa-arrow-right"></i>
-            </button>
+            <AppButton
+              title="Register"
+              rightIcon="fal fa-arrow-right"
+              onClick={() => handleSignup()}
+              buttonType="gradientBtn"
+              className="shadow-hover submit-btn"
+            />
             <small className="no-account-text">
               Already have an account? 
               <Link to="/login" onClick={() => setLoggingAuth(true)}>Login</Link>

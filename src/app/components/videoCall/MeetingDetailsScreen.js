@@ -3,10 +3,8 @@ import { Keyboard } from "@material-ui/icons";
 import React, { useState } from "react";
 import useResponsiveSize from "./useResponsiveSize";
 
-export function MeetingDetailsScreen({
-  onClickJoin,
-  onClickCreateMeeting,
-}){
+export function MeetingDetailsScreen({ onClickJoin, onClickCreateMeeting }) {
+
   const [meetingId, setMeetingId] =useState("");
   const [meetingIdError, setMeetingIdError] = useState(false);
   const padding = useResponsiveSize({

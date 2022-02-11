@@ -9,7 +9,7 @@ import {
 import { getToken } from "./api";
 import { JoiningScreen } from "./JoiningScreen";
 
-const primary = "#3E84F6";
+const primary = "#131C55";
 
 const width = 400;
 const height = (width * 2) / 3;
@@ -593,35 +593,27 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
     isRecording,
     isLiveStreaming,
     pinnedParticipants,
-    //
     join,
     leave,
     connectTo,
     end,
-    //
     startRecording,
     stopRecording,
-    //
     sendChatMessage,
     respondEntry,
-    //
     muteMic,
     unmuteMic,
     toggleMic,
-    //
     disableWebcam,
     enableWebcam,
     toggleWebcam,
-    //
     disableScreenShare,
     enableScreenShare,
     toggleScreenShare,
-    //
     getMics,
     getWebcams,
     changeWebcam,
     changeMic,
-
     startVideo,
     stopVideo,
     resumeVideo,
@@ -791,7 +783,7 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
   );
 }
 
-const App = () => {
+export default function VideoCallApp() {
 
   const [token, setToken] = useState("");
   const [meetingId, setMeetingId] = useState("");
@@ -806,7 +798,7 @@ const App = () => {
         meetingId,
         micEnabled: micOn,
         webcamEnabled: webcamOn,
-        name: participantName ? participantName : "TestUser",
+        name: participantName ? participantName : "Guest User",
       }}
       token={token}
       reinitialiseMeetingOnConfigChange={true}
@@ -841,4 +833,3 @@ const App = () => {
     />
 };
 
-export default App;
