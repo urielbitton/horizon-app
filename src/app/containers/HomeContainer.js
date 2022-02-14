@@ -15,10 +15,11 @@ import Settings from '../pages/Settings'
 import Support from "../pages/Support"
 import CreateAMeeting from '../pages/CreateAMeeting'
 import JoinAMeeting from '../pages/JoinAMeeting'
+import VideoCallPage from '../pages/VideoCallPage'
 
 export default function HomeContainer() {
 
-  const { myUser, openSidebar, setOpenSidebar} = useContext(StoreContext)
+  const { openSidebar, setOpenSidebar } = useContext(StoreContext)
 
   useEffect(() => {
     if(openSidebar) 
@@ -62,6 +63,9 @@ export default function HomeContainer() {
           </Route>
           <Route exact path="/join-meeting">
             <JoinAMeeting />
+          </Route>
+          <Route path="/video-call/:meetingID">
+            <VideoCallPage />
           </Route>
           <Route exact path="*" component={ErrorPage} />
         </Switch>

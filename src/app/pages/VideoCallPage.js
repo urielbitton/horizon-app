@@ -6,8 +6,8 @@ import {
   useParticipant,
   useConnection,
 } from "@videosdk.live/react-sdk";
-import { getToken } from "./api";
-import JoiningScreen from "../../pages/JoiningScreen";
+import { getToken } from "../components/videoCall/api";
+import JoiningScreen from "../components/videoCall/JoiningScreen";
 
 const primary = "#131C55";
 
