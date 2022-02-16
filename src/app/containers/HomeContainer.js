@@ -64,7 +64,7 @@ export default function HomeContainer() {
           <Route exact path="/join-meeting">
             <JoinAMeeting />
           </Route>
-          <Route path="/video-call/:meetingID">
+          <Route exact path="/video-call/:meetingID/:token">
             <VideoCallPage />
           </Route>
           <Route exact path="*" component={ErrorPage} />

@@ -5,7 +5,7 @@ import { createMeeting, getToken } from "./api"
 
 export default function JoiningScreen(props) {
 
-  const { meetingID, setMeetingID, setToken, setWebcamOn, 
+  const { meetingID, setMeetingID, token, setToken, setWebcamOn, 
     setMicOn, micOn, webcamOn, onClickStartMeeting } = props
   const [readyToJoin, setReadyToJoin] = useState(true)
   const videoPlayerRef = useRef()
@@ -41,8 +41,8 @@ export default function JoiningScreen(props) {
 
   const generateMeetingID = async () => {
     const token = await getToken()
-    const _meetingId = await createMeeting({ token })
-    setToken(token);
+    const _meetingId = await createMeeting({token})
+    setToken(token)
     setMeetingID(_meetingId)
     setReadyToJoin(true)
     setWebcamOn(true)
@@ -90,7 +90,7 @@ export default function JoiningScreen(props) {
         rightIcon="fal fa-arrow-right"
         buttonType="gradientBtn"
         className="shadow-hover"
-        url={`/video-call/${meetingID}`}
+        url={`/video-call/${meetingID}/${token}`}
       />
     </div>
   )

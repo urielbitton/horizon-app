@@ -23,27 +23,28 @@ export default function CreateAMeeting() {
 
   return (
     !isMeetingStarted ? (
-    <div className="create-meeting-page">
-      <img src={createMeetingImg} alt="" />
-      <h3>Create A Meeting</h3>
-      <h5>Only contacts that you share your meeting ID<br/>with will be able to join your meeting.</h5>
-      <AppButton
-        title="Create Meeting"
-        buttonType="gradientBtn"
-        className="shadow-hover"
-        onClick={() => startMeeting()}
+      <div className="create-meeting-page">
+        <img src={createMeetingImg} alt="" />
+        <h3>Create A Meeting</h3>
+        <h5>Only contacts that you share your meeting ID<br/>with will be able to join your meeting.</h5>
+        <AppButton
+          title="Create Meeting"
+          buttonType="gradientBtn"
+          className="shadow-hover"
+          onClick={() => startMeeting()}
+        />
+      </div> ) :
+      <JoiningScreen
+        participantName={`${myUser?.firstName} ${myUser?.lastName}`}
+        meetingID={meetingID}
+        setMeetingID={setMeetingID}
+        token={token}
+        setToken={setToken}
+        setMicOn={setMicOn}
+        micOn={micOn}
+        webcamOn={webcamOn}
+        setWebcamOn={setWebcamOn}
       />
-    </div> ) :
-    <JoiningScreen
-      participantName={`${myUser?.firstName} ${myUser?.lastName}`}
-      meetingID={meetingID}
-      setMeetingID={setMeetingID}
-      setToken={setToken}
-      setMicOn={setMicOn}
-      micOn={micOn}
-      webcamOn={webcamOn}
-      setWebcamOn={setWebcamOn}
-    />
   )
 }
   

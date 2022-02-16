@@ -1,16 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  MeetingProvider,
-  MeetingConsumer,
-  useMeeting,
-  useParticipant,
-  useConnection,
-} from "@videosdk.live/react-sdk";
-import { getToken } from "../components/videoCall/api";
-import JoiningScreen from "../components/videoCall/JoiningScreen";
+import React, { useEffect, useRef, useState } from "react"
+import { useRouteMatch } from 'react-router-dom'
+import { MeetingProvider, useMeeting, useParticipant, useConnection } from "@videosdk.live/react-sdk"
+import { getToken } from "../components/videoCall/api"
+
 
 const primary = "#131C55";
-
 const width = 400;
 const height = (width * 2) / 3;
 const borderRadius = 8;
@@ -785,51 +779,40 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
 
 export default function VideoCallApp() {
 
+  const currentMeetingID = useRouteMatch('/video-call/:meetingID/:token').params.meetingID
+  const currentToken = useRouteMatch('/video-call/:meetingID/:token').params.token
   const [token, setToken] = useState("")
-  const [meetingId, setMeetingId] = useState("")
+  const [meetingID, setMeetingID] = useState("")
   const [participantName, setParticipantName] = useState("")
-  const [micOn, setMicOn] = useState(false)
-  const [webcamOn, setWebcamOn] = useState(false)
-  const [isMeetingStarted, setMeetingStarted] = useState(false)
+  const [micOn, setMicOn] = useState(true)
+  const [webcamOn, setWebcamOn] = useState(true)
 
-  return isMeetingStarted ? 
+  return (
     <MeetingProvider
       config={{
-        meetingId,
+        meetingId: currentMeetingID,
         micEnabled: micOn,
         webcamEnabled: webcamOn,
         name: participantName ? participantName : "Guest User",
+        token: currentToken
       }}
-      token={token}
+      token={currentToken}
       reinitialiseMeetingOnConfigChange={true}
       joinWithoutUserInteraction={true}
     >
       <MeetingView
         onNewMeetingIdToken={({ meetingId, token }) => {
-          setMeetingId(meetingId);
-          setToken(token);
+          setMeetingID(meetingId)
+          setToken(token)
         }}
         onMeetingLeave={()=>{
           setToken("")
-          setMeetingId("")
+          setMeetingID("")
           setWebcamOn(false)
           setMicOn(false)
-          setMeetingStarted(false)
         }}
       />
-    </MeetingProvider> : 
-    <JoiningScreen
-      participantName={participantName}
-      setParticipantName={setParticipantName}
-      meetingId={meetingId}
-      setMeetingId={setMeetingId}
-      setToken={setToken}
-      setMicOn={setMicOn}
-      micOn={micOn}
-      webcamOn={webcamOn}
-      setWebcamOn={setWebcamOn}
-      onClickStartMeeting={() => setMeetingStarted(true)}
-      startMeeting={isMeetingStarted}
-    />
+    </MeetingProvider>
+  )
 };
 
