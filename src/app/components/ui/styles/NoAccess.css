@@ -1,0 +1,33 @@
+.no-access-page {
+  width: 100%;
+  height: calc(100vh - var(--navbarHeight) - 50px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.no-access-page .container {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.no-access-page img {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.no-access-page h4 {
+  color: #444;
+  font-size: 35px;
+}
+.no-access-page p {
+  color: var(--grayText);
+  font-size: 17px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.no-access-page .app-button {
+  margin-top: 30px;
+  width: 170px;
+  height: 50px;
+}

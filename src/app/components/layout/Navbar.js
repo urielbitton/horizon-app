@@ -60,6 +60,9 @@ export default function Navbar() {
             setSlideNotifs={setSlideNotifs}
           />
         </div>
+        <div className="icon-container">
+          <i className="far fa-bell"></i>
+        </div>
         <div 
           className="nav-profile-container"
           onClick={(e) => {

@@ -8,7 +8,7 @@ export default function AppButton(props) {
     buttonType, disabled, fullWidth, activeShadow } = props
 
   return (
-    url ?
+    url ? (
     <Link 
       to={url ?? '#'} 
       style={{width: fullWidth ? '100%' : 'auto'}}
@@ -27,7 +27,8 @@ export default function AppButton(props) {
         { title }
         { rightIcon && <i className={`${rightIcon} right-icon`}></i> }
       </button>
-    </Link> :
+    </Link> 
+    ) :
     <button 
       className={`
         app-button 

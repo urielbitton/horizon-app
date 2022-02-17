@@ -16,10 +16,11 @@ import Support from "../pages/Support"
 import CreateAMeeting from '../pages/CreateAMeeting'
 import JoinAMeeting from '../pages/JoinAMeeting'
 import VideoCallPage from '../pages/VideoCallPage'
+import NoAccess from "../components/ui/NoAccess"
 
 export default function HomeContainer() {
 
-  const { openSidebar, setOpenSidebar } = useContext(StoreContext)
+  const { myUser, openSidebar, setOpenSidebar } = useContext(StoreContext)
 
   useEffect(() => {
     if(openSidebar) 
@@ -59,13 +60,13 @@ export default function HomeContainer() {
             <Support />
           </Route>
           <Route exact path="/create-meeting">
-            <CreateAMeeting />
+            { myUser?.isProMember ? <CreateAMeeting /> : <NoAccess proOnly /> }
           </Route>
           <Route exact path="/join-meeting">
-            <JoinAMeeting />
+            { myUser?.isProMember ? <JoinAMeeting /> : <NoAccess proOnly /> }
           </Route>
           <Route exact path="/video-call/:meetingID/:token">
-            <VideoCallPage />
+            { myUser?.isProMember ? <VideoCallPage /> : <NoAccess proOnly /> }
           </Route>
           <Route exact path="*" component={ErrorPage} />
         </Switch>
