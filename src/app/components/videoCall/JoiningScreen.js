@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from "react"
 import './styles/JoiningScreen.css'
 import AppButton from "../ui/AppButton"
-import { createMeeting, getToken } from "./api"
+import { createMeeting, getToken, validateMeeting } from "./api"
 
 export default function JoiningScreen(props) {
 
-  const { meetingID, setMeetingID, token, setToken, setWebcamOn, 
-    setMicOn, micOn, webcamOn, onClickStartMeeting } = props
+  const { joinMeetingID, setWebcamOn, setMicOn, micOn, webcamOn, isCreate } = props
   const [readyToJoin, setReadyToJoin] = useState(true)
+  const [meetingID, setMeetingID] = useState('')
   const videoPlayerRef = useRef()
   const [videoTrack, setVideoTrack] = useState(null)
+  const [token, setToken] = useState('')
+  const allowStartMeeting = meetingID.length && token.length
 
   const handleToggleWebcam = () => {
     if (!webcamOn) {
@@ -41,13 +43,27 @@ export default function JoiningScreen(props) {
 
   const generateMeetingID = async () => {
     const token = await getToken()
-    const _meetingId = await createMeeting({token})
+    const _meetingID = await createMeeting({token})
+    setMeetingID(_meetingID)
     setToken(token)
-    setMeetingID(_meetingId)
     setReadyToJoin(true)
     setWebcamOn(true)
     setMicOn(true)
-    console.log(_meetingId)
+    console.log(_meetingID)
+  }
+
+  const requestJoinMeeting = async (meetingID) => {
+    const token = await getToken()
+    const valid = await validateMeeting({ meetingId: meetingID, token })
+    if (valid) {
+      setReadyToJoin(true);
+      setToken(token)
+      setWebcamOn(true)
+      setMicOn(true)
+    } 
+    else {
+      window.alert("Invalid Meeting ID")
+    }
   }
 
   useEffect(() => {
@@ -57,8 +73,19 @@ export default function JoiningScreen(props) {
   }, [webcamOn])
 
   useEffect(() => {
-    generateMeetingID()
+    if(isCreate) {
+      generateMeetingID()
+    }
+    else {
+      setMeetingID(joinMeetingID)
+    }
   },[])
+
+  useEffect(() => {
+    if(!isCreate && meetingID.length) {
+      requestJoinMeeting(meetingID)
+    }
+  },[meetingID])
 
   return (
     <div className="joining-screen">
@@ -85,13 +112,17 @@ export default function JoiningScreen(props) {
           </div>
         </div>
       </div>
-      <AppButton 
-        title="Start Meeting"
-        rightIcon="fal fa-arrow-right"
-        buttonType="gradientBtn"
-        className="shadow-hover"
-        url={`/video-call/${meetingID}/${token}`}
-      />
+      {
+        allowStartMeeting ?
+        <AppButton 
+          title={isCreate ? "Start Meeting" : "Join Meeting"}
+          rightIcon="fal fa-arrow-right"
+          buttonType="gradientBtn"
+          className="shadow-hover"
+          url={`/video-call/${meetingID}/${token}`}
+        /> :
+        <></>
+      }
     </div>
   )
 }

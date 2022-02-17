@@ -8,10 +8,7 @@ import { StoreContext } from "../store/store"
 export default function CreateAMeeting() {
 
   const { myUser } = useContext(StoreContext)
-  const [token, setToken] = useState("")
-  const [meetingID, setMeetingID] = useState('')
-  const [participantName, setParticipantName] = useState("")
-  const [micOn, setMicOn] = useState(false)
+  const [micOn, setMicOn] = useState(true)
   const [webcamOn, setWebcamOn] = useState(true)
   const [isMeetingStarted, setMeetingStarted] = useState(false)
 
@@ -36,14 +33,11 @@ export default function CreateAMeeting() {
       </div> ) :
       <JoiningScreen
         participantName={`${myUser?.firstName} ${myUser?.lastName}`}
-        meetingID={meetingID}
-        setMeetingID={setMeetingID}
-        token={token}
-        setToken={setToken}
         setMicOn={setMicOn}
         micOn={micOn}
         webcamOn={webcamOn}
         setWebcamOn={setWebcamOn}
+        isCreate
       />
   )
 }

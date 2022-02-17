@@ -20,8 +20,56 @@
   color: #777;
   text-align: center;
 }
-.create-meeting-page .app-button {
+.create-meeting-page > .app-button {
   margin-top: 40px;
   padding: 20px 40px;
   font-size: 16px;
+}
+
+.join-input {
+  width: 600px;
+  height: 60px;
+  margin-top: 40px;
+}
+.join-input input {
+  background: none;
+  border: 2px solid #ccc;
+  height: 100%;
+  padding-left: 45px;
+  font-size: 18px;
+}
+.join-input small {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  font-size: 11px;
+  color: #444;
+  background: var(--bg);
+  z-index: 10;
+  padding: 2px 5px;
+  pointer-events: none;
+}
+.join-input .icon-container {
+  position: absolute;
+  height: 100%;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.join-input .icon-container i {
+  font-size: 18px;
+}
+.btn-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.join-input .app-button {
+  padding: 7px 12px;
 }

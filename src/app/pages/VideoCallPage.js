@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState, useContext } from "react"
 import { useRouteMatch } from 'react-router-dom'
 import { MeetingProvider, useMeeting, useParticipant, useConnection } from "@videosdk.live/react-sdk"
 import { getToken } from "../components/videoCall/api"
-
+import { StoreContext } from '../store/store'
 
 const primary = "#131C55";
 const width = 400;
@@ -779,23 +779,25 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
 
 export default function VideoCallApp() {
 
+  const { myUser } = useContext(StoreContext)
   const currentMeetingID = useRouteMatch('/video-call/:meetingID/:token').params.meetingID
   const currentToken = useRouteMatch('/video-call/:meetingID/:token').params.token
   const [token, setToken] = useState("")
   const [meetingID, setMeetingID] = useState("")
-  const [participantName, setParticipantName] = useState("")
   const [micOn, setMicOn] = useState(true)
   const [webcamOn, setWebcamOn] = useState(true)
 
+  const meetingConfig = {
+    meetingId: currentMeetingID,
+    token: currentToken,
+    micEnabled: micOn,
+    webcamEnabled: webcamOn,
+    name: `${myUser?.firstName} ${myUser?.lastName}`,
+  }
+
   return (
     <MeetingProvider
-      config={{
-        meetingId: currentMeetingID,
-        micEnabled: micOn,
-        webcamEnabled: webcamOn,
-        name: participantName ? participantName : "Guest User",
-        token: currentToken
-      }}
+      config={meetingConfig}
       token={currentToken}
       reinitialiseMeetingOnConfigChange={true}
       joinWithoutUserInteraction={true}
