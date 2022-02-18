@@ -102,6 +102,8 @@ const ParticipantView = ({ participantId }) => {
     switchTo, pinState, setQuality, enableMic, disableMic, enableWebcam,
     disableWebcam, pin, unpin 
   } = useParticipant(participantId, { onStreamEnabled, onStreamDisabled })
+  const { localParticipant, activeSpeakerId } = useMeeting()
+  const localSpeaking = localParticipant.id === activeSpeakerId
 
   useEffect(() => {
     if (webcamRef.current) {
@@ -159,11 +161,35 @@ const ParticipantView = ({ participantId }) => {
 
   return (
     <div className="video-container">
-      <audio ref={micRef} autoPlay muted={isLocal} />
+      <audio 
+        ref={micRef} 
+        autoPlay 
+        muted={isLocal}  
+      />
       <video
         ref={webcamRef}
         autoPlay
       />
+      <div className="participant-actions">
+        <div className="name-tag">
+          <small>{displayName}</small>
+        </div>
+        {
+          !webcamOn && !isLocal &&
+          <div className="icon-container">
+            <i className="fal fa-video-slash"></i>
+          </div>
+        }
+        {
+          !micOn && !isLocal &&
+          <div className="icon-container">
+            <i className="fal fa-microphone-slash"></i>
+          </div>
+        }
+        <div className={`icon-container speakingIcon ${localSpeaking ? 'show' : ''}`}>
+          <i className='fal fa-waveform'></i>
+        </div>
+      </div>
     </div>
   )
 }
@@ -493,6 +519,7 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
       toggleMic={toggleMic}
       localWebcamOn={localWebcamOn}
       localMicOn={localMicOn}
+      meetingID={meetingId}
     />
   )
 }

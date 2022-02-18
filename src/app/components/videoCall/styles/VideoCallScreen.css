@@ -17,7 +17,7 @@
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background: rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.7);
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
@@ -28,10 +28,8 @@
 }
 .video-call-screen .meeting-options-btn i {
   font-size: 24px;
-  color: rgba(255,255,255,0.5)
-}
-.video-call-screen .meeting-options-btn:hover {
-  background: rgba(255,255,255,0.4)
+  color: rgba(255,255,255,0.75);
+  transition: all 0.2s;
 }
 .video-call-screen .meeting-options-btn:hover i {
   color: #fff;
@@ -73,14 +71,13 @@
   bottom: 20px;
   left: 0;
   right: 0;
-  margin: auto;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 200;
 }
 .video-call-screen .meeting-bar {
-  z-index: 100;
+  z-index: 10;
   background: rgba(0,0,0,0.8);
   box-shadow: 0 0 10px 5px rgba(0,0,0,0.3);
   height: 60px;
@@ -120,5 +117,52 @@
   transition: all 0.2s;
 }
 .video-call-screen .meeting-bar > div.red {
-  background: #e70f0f;
+  background: var(--danger);
+}
+
+.video-call-screen .participant-actions {
+  width: 100%;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  z-index: 110;
+}
+.video-call-screen .name-tag {
+  background: rgba(0,0,0,0.8);
+  padding: 7px 12px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  cursor: default;
+}
+.video-call-screen .name-tag small {
+  color: #eee;
+  font-size: 12px;
+  font-weight: 500;
+}
+.video-call-screen .participant-actions .icon-container {
+  transition: all 0.5s;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.8);
+}
+.video-call-screen .participant-actions .icon-container.speakingIcon {
+  opacity: 0;
+}
+.video-call-screen .participant-actions .icon-container i {
+  color: #fff;
+  font-size: 18px;
+}
+.video-call-screen .participant-actions .icon-container.show {
+  opacity: 1;
 }
