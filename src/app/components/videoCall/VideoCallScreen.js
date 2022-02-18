@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles/VideoCallScreen.css'
 import { useMeeting } from "@videosdk.live/react-sdk"
 
@@ -6,6 +6,7 @@ export default function VideoCallScreen(props) {
 
   const { ParticipantsView, ConnectionsView, participantViewVisible, leave,
     toggleWebcam, toggleMic, localWebcamOn, localMicOn, meetingID } = props
+  const [showTools, setShowTools] = useState(true)
   const { participants } = useMeeting()
   const participantsNum = participants.size
 
@@ -27,9 +28,9 @@ export default function VideoCallScreen(props) {
           <ParticipantsView /> : 
           <ConnectionsView />
         }
-      </div>
+      </div> 
       <div className="meeting-bar-container">
-        <div className="meeting-bar">
+        <div className={`meeting-bar ${!showTools ? 'hide' : ''}`}>
           <div 
             className={!localMicOn ? 'inactive' : ''}
             onClick={toggleMic}
@@ -66,6 +67,12 @@ export default function VideoCallScreen(props) {
           >
             <i className="fal fa-phone"></i>
           </div>
+        </div>
+        <div 
+          className={`mobile-show-tools ${showTools ? 'show' : ''}`}
+          onClick={() => setShowTools(prev => !prev)}
+        >
+          <i className={showTools ? 'fal fa-times' : 'fal fa-bars'}></i>
         </div>
       </div>
     </div>

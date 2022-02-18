@@ -26,7 +26,7 @@ export default function JoinAMeeting() {
       <div className="create-meeting-page">
         <img src={joinMeetingImg} alt="" />
         <h3>Join A Meeting</h3>
-        <h5>Only contacts that you share your meeting ID<br/>with will be able to join your meeting.</h5>
+        <h5>Only contacts that you share your meeting ID&nbsp;<br/>with will be able to join your meeting.</h5>
         <label className="join-input">
           <small>Meeting ID</small>
           <div className="icon-container">

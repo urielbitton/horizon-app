@@ -16,6 +16,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+.video-call-screen .videos-grid .video-container {
+  border: 2px solid #111;
+}
 .video-call-screen .videos-grid-1 .video-container {
   width: 100%;
   height: 100%;
@@ -39,6 +42,9 @@
   position: absolute;
   visibility: hidden;
   opacity: 0;
+}
+.video-call-screen .video-container.speaking {
+  border: 2px solid var(--secondary);
 }
 
 .video-call-screen .meeting-bar-container {
@@ -71,6 +77,22 @@
   align-items: center;
   transition: all 0.2s;
   cursor: pointer;
+}
+.video-call-screen .mobile-show-tools {
+  height: 50px;
+  width: 50px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  border-radius: 100%;
+}
+.video-call-screen .mobile-show-tools i {
+  font-size: 24px;
+  color: #fff;
+}
+.video-call-screen .mobile-show-tools i.fa-times {
+  font-size: 28px;
 }
 .video-call-screen .meeting-bar > div.inactive {
   filter: brightness(90%);
@@ -143,4 +165,40 @@
 }
 .video-call-screen .participant-actions .icon-container.show {
   opacity: 1;
+}
+
+
+@media (max-width: 700px) {
+  .video-call-screen .meeting-bar-container {
+    right: 20px;
+    left: auto;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .video-call-screen .meeting-bar {
+    flex-direction: column;
+    height: auto;
+  }
+  .video-call-screen .meeting-bar.hide {
+    display: none;
+  }
+  .video-call-screen .meeting-bar > div {
+    height: 50px;
+  }
+  .video-call-screen .mobile-show-tools {
+    display: flex;
+    cursor: pointer;
+  }
+  .video-call-screen .videos-grid-2 .video-container {
+    width: 100%;
+    height: 50%;
+  }
+  .video-call-screen .videos-grid-3 .video-container {
+    width: 100%;
+    height: 33.33%
+  }
+  .video-call-screen .videos-grid-4 .video-container {
+    width: 100%;
+    height: 25%
+  }
 }

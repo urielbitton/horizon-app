@@ -23,7 +23,7 @@ export default function CreateAMeeting() {
       <div className="create-meeting-page">
         <img src={createMeetingImg} alt="" />
         <h3>Create A Meeting</h3>
-        <h5>Only contacts that you share your meeting ID<br/>with will be able to join your meeting.</h5>
+        <h5>Only contacts that you share your meeting ID&nbsp;<br/>with will be able to join your meeting.</h5>
         <AppButton
           title="Create Meeting"
           buttonType="gradientBtn"

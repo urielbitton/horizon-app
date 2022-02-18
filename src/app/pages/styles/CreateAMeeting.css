@@ -26,19 +26,19 @@
   font-size: 16px;
 }
 
-.join-input {
+.create-meeting-page .join-input {
   width: 600px;
   height: 60px;
   margin-top: 40px;
 }
-.join-input input {
+.create-meeting-page .join-input input {
   background: none;
   border: 2px solid #ccc;
   height: 100%;
   padding-left: 45px;
   font-size: 18px;
 }
-.join-input small {
+.create-meeting-page .join-input small {
   position: absolute;
   top: -8px;
   left: 10px;
@@ -49,7 +49,7 @@
   padding: 2px 5px;
   pointer-events: none;
 }
-.join-input .icon-container {
+.create-meeting-page .join-input .icon-container {
   position: absolute;
   height: 100%;
   width: 45px;
@@ -57,10 +57,10 @@
   align-items: center;
   justify-content: center;
 }
-.join-input .icon-container i {
+.create-meeting-page .join-input .icon-container i {
   font-size: 18px;
 }
-.btn-container {
+.create-meeting-page .btn-container {
   position: absolute;
   top: 0;
   right: 0;
@@ -70,6 +70,16 @@
   align-items: center;
   justify-content: center;
 }
-.join-input .app-button {
+.create-meeting-page .join-input .app-button {
   padding: 7px 12px;
+}
+
+
+@media (max-width: 700px) {
+  .create-meeting-page .join-input {
+    width: 95%;
+  }
+  .create-meeting-page > h5 br {
+    display: none;
+  }
 }

@@ -160,7 +160,7 @@ const ParticipantView = ({ participantId }) => {
   }, [screenShareStream, screenShareOn])
 
   return (
-    <div className="video-container">
+    <div className={`video-container ${localSpeaking ? 'speaking' : ''}`}>
       <audio 
         ref={micRef} 
         autoPlay 

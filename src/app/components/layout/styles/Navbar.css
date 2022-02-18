@@ -46,15 +46,17 @@
   cursor: pointer;
 }
 .navbar .nav-icon-btn i {
-  color: var(--grayText);
+  color: var(--primary);
   font-size: 20px;
   transition: all 0.2s;
 }
 .navbar .nav-icon-btn:hover i,
-.navbar .nav-icon-btn i.active
- {
+.navbar .nav-icon-btn i.active {
   color: var(--primary);
   font-weight: 600;
+}
+.navbar .nav-icon-btn i.fa-comment-alt {
+  font-size: 18px;
 }
 .navbar .nav-icon-btn .notifs-num {
   position: absolute;
@@ -82,7 +84,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  margin-left: 20px;
+  margin-left: 10px;
   cursor: pointer;
   border-radius: 40px;
   padding: 5px 10px;

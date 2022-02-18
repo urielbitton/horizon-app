@@ -55,13 +55,16 @@ export default function Navbar() {
         <SearchBar showIcon />
       </div>
       <div className="side right">
+        <div className="nav-icon-btn">
+          <i className="fas fa-comment-alt"></i>
+        </div>
+        <div className="nav-icon-btn">
+          <i className="fas fa-bell"></i>
+        </div>
         <div className={`notifications-dropdown ${slideNotifs ? "open" : ""}`}>
           <NotificationsDropdown 
             setSlideNotifs={setSlideNotifs}
           />
-        </div>
-        <div className="icon-container">
-          <i className="far fa-bell"></i>
         </div>
         <div 
           className="nav-profile-container"
