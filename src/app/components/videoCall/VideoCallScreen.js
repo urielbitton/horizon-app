@@ -21,9 +21,6 @@ export default function VideoCallScreen(props) {
 
   return (
     <div className="video-call-screen">
-      <div className="meeting-options-btn">
-        <i className="fal fa-bars"></i>
-      </div>
       <div className={`videos-grid videos-grid-${participantsNum}`}>
         {
           participantViewVisible ? 
@@ -45,8 +42,23 @@ export default function VideoCallScreen(props) {
           >
             <i className={`fal ${localWebcamOn ? "fa-video" : "fa-video-slash"}`}></i>
           </div>
+          <div>
+            <i className="fal fa-desktop"></i>
+          </div>
+          <div>
+            <i className="fal fa-comment-alt"></i>
+          </div>
+          <div>
+            <i className="fal fa-user-friends"></i>
+          </div>
+          <div>
+            <i className="fas fa-th"></i>
+          </div>
           <div onClick={() => copyMeetingID()}>
             <i className="fal fa-info-circle"></i>
+          </div>
+          <div>
+            <i className="fal fa-ellipsis-h"></i>
           </div>
           <div 
             className="red"

@@ -10,31 +10,6 @@
   background-position: center;
   background-size: cover;
 }
-.video-call-screen .meeting-options-btn {
-  position: fixed;
-  top: 40px;
-  left: 40px;
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  background: rgba(0,0,0,0.7);
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  cursor: pointer;
-  z-index: 200;
-}
-.video-call-screen .meeting-options-btn i {
-  font-size: 24px;
-  color: rgba(255,255,255,0.75);
-  transition: all 0.2s;
-}
-.video-call-screen .meeting-options-btn:hover i {
-  color: #fff;
-}
-
 .video-call-screen .videos-grid {
   width: 100%;
   height: 100vh;
@@ -115,6 +90,9 @@
   color: rgba(255,255,255,0.85);
   font-size: 20px;
   transition: all 0.2s;
+}
+.video-call-screen .meeting-bar > div i.fa-ellipsis-h {
+  font-size: 30px;
 }
 .video-call-screen .meeting-bar > div.red {
   background: var(--danger);
