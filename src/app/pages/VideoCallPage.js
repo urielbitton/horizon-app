@@ -3,6 +3,8 @@ import { useRouteMatch } from 'react-router-dom'
 import { MeetingProvider, useMeeting, useParticipant, useConnection } from "@videosdk.live/react-sdk"
 import { getToken } from "../components/videoCall/api"
 import { StoreContext } from '../store/store'
+import VideoCallScreen from "../components/videoCall/VideoCallScreen"
+import { useHistory } from "react-router-dom"
 
 const primary = "#131C55";
 const width = 400;
@@ -94,285 +96,88 @@ const ParticipantView = ({ participantId }) => {
   const onStreamEnabled = (stream) => {};
   const onStreamDisabled = (stream) => {};
 
-  const {
-    displayName,
-    participant,
-    webcamStream,
-    micStream,
-    screenShareStream,
-    webcamOn,
-    micOn,
-    screenShareOn,
-    isLocal,
-    isActiveSpeaker,
-    isMainParticipant,
-    switchTo,
-    pinState,
-    setQuality,
-    enableMic,
-    disableMic,
-    enableWebcam,
-    disableWebcam,
-    pin,
-    unpin,
-  } = useParticipant(participantId, {
-    onStreamEnabled,
-    onStreamDisabled,
-  });
+  const { 
+    displayName, participant, webcamStream, micStream, screenShareStream, webcamOn, 
+    micOn, screenShareOn, isLocal, isActiveSpeaker, isMainParticipant,
+    switchTo, pinState, setQuality, enableMic, disableMic, enableWebcam,
+    disableWebcam, pin, unpin 
+  } = useParticipant(participantId, { onStreamEnabled, onStreamDisabled })
 
   useEffect(() => {
     if (webcamRef.current) {
       if (webcamOn) {
-        const mediaStream = new MediaStream();
-        mediaStream.addTrack(webcamStream.track);
-
-        webcamRef.current.srcObject = mediaStream;
+        const mediaStream = new MediaStream()
+        mediaStream.addTrack(webcamStream.track)
+        webcamRef.current.srcObject = mediaStream
         webcamRef.current
           .play()
           .catch((error) =>
             console.error("videoElem.current.play() failed", error)
-          );
-      } else {
-        webcamRef.current.srcObject = null;
+          )
+      } 
+      else {
+        webcamRef.current.srcObject = null
       }
     }
-  }, [webcamStream, webcamOn]);
+  }, [webcamStream, webcamOn])
 
   useEffect(() => {
     if (micRef.current) {
       if (micOn) {
-        const mediaStream = new MediaStream();
-        mediaStream.addTrack(micStream.track);
-
+        const mediaStream = new MediaStream()
+        mediaStream.addTrack(micStream.track)
         micRef.current.srcObject = mediaStream;
         micRef.current
           .play()
           .catch((error) =>
             console.error("videoElem.current.play() failed", error)
-          );
-      } else {
-        micRef.current.srcObject = null;
+          )
+      } 
+      else {
+        micRef.current.srcObject = null
       }
     }
-  }, [micStream, micOn]);
+  }, [micStream, micOn])
 
   useEffect(() => {
     if (screenShareRef.current) {
       if (screenShareOn) {
-        const mediaStream = new MediaStream();
-        mediaStream.addTrack(screenShareStream.track);
-
-        screenShareRef.current.srcObject = mediaStream;
+        const mediaStream = new MediaStream()
+        mediaStream.addTrack(screenShareStream.track)
+        screenShareRef.current.srcObject = mediaStream
         screenShareRef.current
           .play()
           .catch((error) =>
             console.error("videoElem.current.play() failed", error)
-          );
-      } else {
-        screenShareRef.current.srcObject = null;
+          )
+      } 
+      else {
+        screenShareRef.current.srcObject = null
       }
     }
-  }, [screenShareStream, screenShareOn]);
+  }, [screenShareStream, screenShareOn])
 
   return (
-    <div
-      style={{
-        width,
-        backgroundColor: primary,
-        borderRadius: borderRadius,
-        overflow: "hidden",
-        margin: borderRadius,
-        padding: borderRadius,
-        display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        position: "relative",
-      }}
-    >
+    <div className="video-container">
       <audio ref={micRef} autoPlay muted={isLocal} />
-
-      <div
-        style={{
-          position: "relative",
-          borderRadius: borderRadius,
-          overflow: "hidden",
-          backgroundColor: "pink",
-          width: "100%",
-          height: 300,
-        }}
-      >
-        <div
-          style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
-        >
-          <video
-            height={"100%"}
-            width={"100%"}
-            ref={webcamRef}
-            style={{
-              backgroundColor: "black",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              objectFit: "contain",
-            }}
-            autoPlay
-          />
-          <div
-            style={{
-              position: "absolute",
-              top: borderRadius,
-              right: borderRadius,
-            }}
-          >
-            <p
-              style={{
-                color: webcamOn ? "green" : "red",
-                fontSize: 16,
-                fontWeight: "bold",
-                opacity: 1,
-              }}
-            >
-              WEB CAM
-            </p>
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              top: 10,
-              left: 10,
-            }}
-          >
-            <button
-              className="button blue"
-              style={
-                {
-                  // height: 50,
-                  // width: 200,
-                }
-              }
-              onClick={async () => {
-                const meetingId = prompt(
-                  `Please enter meeting id where you want to switch ${displayName}`
-                );
-                const token = await getToken();
-                if (meetingId && token) {
-                  try {
-                    await switchTo({
-                      meetingId,
-                      payload: "Im Switching",
-                      token: token,
-                    });
-                  } catch (e) {
-                    console.log("swithc To Error", e);
-                  }
-                } else {
-                  alert("Empty meetingId!");
-                }
-              }}
-            >
-              Switch Participant
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div
-        style={{
-          marginTop: borderRadius,
-          position: "relative",
-          borderRadius: borderRadius,
-          overflow: "hidden",
-          backgroundColor: "lightgreen",
-          width: "100%",
-          height: 300,
-        }}
-      >
-        <div
-          style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
-        >
-          <video
-            height={"100%"}
-            width={"100%"}
-            ref={screenShareRef}
-            style={{
-              backgroundColor: "black",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              objectFit: "contain",
-            }}
-            autoPlay
-          />
-          <div
-            style={{
-              position: "absolute",
-              top: borderRadius,
-              right: borderRadius,
-            }}
-          >
-            <p
-              style={{
-                color: screenShareOn ? "green" : "red",
-                fontSize: 16,
-                fontWeight: "bold",
-                opacity: 1,
-              }}
-            >
-              SCREEN SHARING
-            </p>
-          </div>
-        </div>
-      </div>
-      <table>
-        {[
-          { k: "Name", v: displayName },
-          { k: "webcamOn", v: webcamOn ? "YES" : "NO" },
-          { k: "micOn", v: micOn ? "YES" : "NO" },
-          { k: "screenShareOn", v: screenShareOn ? "YES" : "NO" },
-          { k: "isLocal", v: isLocal ? "YES" : "NO" },
-          { k: "isActiveSpeaker", v: isActiveSpeaker ? "YES" : "NO" },
-          { k: "isMainParticipant", v: isMainParticipant ? "YES" : "NO" },
-        ].map(({ k, v }) => (
-          <tr key={k}>
-            <td style={{ border: "1px solid #fff", padding: 4 }}>
-              <h3 style={{ margin: 0, padding: 0, color: "#fff" }}>{k}</h3>
-            </td>
-            <td style={{ border: "1px solid #fff", padding: 4 }}>
-              <h3 style={{ margin: 0, padding: 0, color: "#fff" }}>{v}</h3>
-            </td>
-          </tr>
-        ))}
-      </table>
+      <video
+        ref={webcamRef}
+        autoPlay
+      />
     </div>
-  );
-};
+  )
+}
 
 const ParticipantsView = () => {
+  
   const { participants } = useMeeting();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "column",
-        padding: borderRadius,
-      }}
-    >
-      <Title dark title={"Participants"} />
-      {chunk([...participants.keys()]).map((k) => (
-        <div style={{ display: "flex" }}>
-          {k.map((l) => (
-            <ParticipantView key={l} participantId={l} />
-          ))}
-        </div>
-      ))}
-    </div>
+    chunk([...participants.keys()]).map((k) => (
+        k.map((l) => (
+          <ParticipantView key={l} participantId={l} />
+        ))
+    ))
   );
 };
 
@@ -454,7 +259,6 @@ const ConnectionView = ({ connectionId }) => {
       >
         Send Meessage
       </button>
-
       <button
         onClick={() => {
           connection.meeting.end();
@@ -502,7 +306,9 @@ const ConnectionsView = () => {
 };
 
 function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
-  const [participantViewVisible, setParticipantViewVisible] = useState(true);
+
+  const [participantViewVisible, setParticipantViewVisible] = useState(true)
+  const history = useHistory()
 
   function onParticipantJoined(participant) {
     console.log(" onParticipantJoined", participant);
@@ -540,6 +346,7 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
   function onMeetingLeft() {
     console.log("onMeetingLeft");
     onMeetingLeave()
+    history.push('/join-meeting')
   }
   const onLiveStreamStarted = (data) => {
     console.log("onLiveStreamStarted example", data);
@@ -547,14 +354,12 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
   const onLiveStreamStopped = (data) => {
     console.log("onLiveStreamStopped example", data);
   };
-
   const onVideoStateChanged = (data) => {
     console.log("onVideoStateChanged", data);
   };
   const onVideoSeeked = (data) => {
     console.log("onVideoSeeked", data);
   };
-
   const onWebcamRequested = (data) => {
     console.log("onWebcamRequested", data);
   };
@@ -679,102 +484,17 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
   const tollbarHeight = 120;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "#D6E9FE",
-      }}
-    >
-      <div style={{ height: tollbarHeight }}>
-        <button className={"button red"} onClick={leave}>
-          LEAVE
-        </button>
-        <button className={"button blue"} onClick={toggleMic}>
-          toggleMic
-        </button>
-        <button className={"button blue"} onClick={toggleWebcam}>
-          toggleWebcam
-        </button>
-        <button className={"button blue"} onClick={toggleScreenShare}>
-          toggleScreenShare
-        </button>
-        <button className={"button blue"} onClick={handlestartVideo}>
-          startVideo
-        </button>
-        <button className={"button blue"} onClick={handlestopVideo}>
-          stopVideo
-        </button>
-        <button className={"button blue"} onClick={handleresumeVideo}>
-          resumeVideo
-        </button>
-        <button className={"button blue"} onClick={handlepauseVideo}>
-          pauseVideo
-        </button>
-        <button className={"button blue"} onClick={handlesseekVideo}>
-          seekVideo
-        </button>
-        <button className={"button blue"} onClick={handleStartLiveStream}>
-          Start Live Stream
-        </button>
-        <button className={"button blue"} onClick={handleStopLiveStream}>
-          Stop Live Stream
-        </button>
-        <button className={"button blue"} onClick={handleStartRecording}>
-          start recording
-        </button>
-        <button className={"button blue"} onClick={handleStopRecording}>
-          stop recording
-        </button>
-        <button
-          className={"button blue"}
-          onClick={() => setParticipantViewVisible((s) => !s)}
-        >
-          Switch to {participantViewVisible ? "Connections" : "Participants"}{" "}
-          view
-        </button>
-
-        <button
-          className={"button blue"}
-          onClick={async () => {
-            const meetingId = prompt(
-              `Please enter meeting id where you want Connect`
-            );
-            if (meetingId) {
-              try {
-                await connectTo({
-                  meetingId,
-                  payload: "This is Testing Payload",
-                });
-              } catch (e) {
-                console.log("Connect to Error", e);
-              }
-            } else {
-              alert("Empty meetingId!");
-            }
-          }}
-        >
-          Make Connections
-        </button>
-      </div>
-      <h1>Meeting id is : {meetingId}</h1>
-      <div style={{ display: "flex", flex: 1 }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            position: "relative",
-            flex: 1,
-            overflowY: "scroll",
-            height: `calc(100vh - ${tollbarHeight}px)`,
-          }}
-        >
-          <ExternalVideo />
-          {participantViewVisible ? <ParticipantsView /> : <ConnectionsView />}
-        </div>
-      </div>
-    </div>
-  );
+    <VideoCallScreen 
+      ParticipantsView={ParticipantsView}
+      ConnectionsView={ConnectionsView}
+      participantViewVisible={participantViewVisible}
+      leave={leave}
+      toggleWebcam={toggleWebcam}
+      toggleMic={toggleMic}
+      localWebcamOn={localWebcamOn}
+      localMicOn={localMicOn}
+    />
+  )
 }
 
 export default function VideoCallApp() {
