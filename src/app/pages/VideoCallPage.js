@@ -75,8 +75,8 @@ const ParticipantView = ({ participantId }) => {
   const micRef = useRef(null);
   const screenShareRef = useRef(null);
 
-  const onStreamEnabled = (stream) => {};
-  const onStreamDisabled = (stream) => {};
+  const onStreamEnabled = (stream) => {}
+  const onStreamDisabled = (stream) => {}
 
   const { 
     displayName, participant, webcamStream, micStream, screenShareStream, webcamOn, 
@@ -86,6 +86,7 @@ const ParticipantView = ({ participantId }) => {
   } = useParticipant(participantId, { onStreamEnabled, onStreamDisabled })
   const { localParticipant, activeSpeakerId } = useMeeting()
   const localSpeaking = localParticipant.id === activeSpeakerId
+  console.log(screenShareOn)
 
   useEffect(() => {
     if (webcamRef.current) {
@@ -149,7 +150,7 @@ const ParticipantView = ({ participantId }) => {
         muted={isLocal}  
       />
       <video
-        ref={webcamRef}
+        ref={ !screenShareOn ? webcamRef : screenShareRef}
         autoPlay
       />
       <div className="participant-actions">
@@ -461,15 +462,13 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
   };
   const handleStopLiveStream = () => {
     stopLivestream();
-  };
+  }
   const handleStartRecording = () => {
     startRecording();
-  };
+  }
   const handleStopRecording = () => {
     stopRecording();
-  };
-
-  const tollbarHeight = 120;
+  }
 
   return (
     <VideoCallScreen 
@@ -479,9 +478,11 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
       leave={leave}
       toggleWebcam={toggleWebcam}
       toggleMic={toggleMic}
+      toggleScreenShare={toggleScreenShare}
       localWebcamOn={localWebcamOn}
       localMicOn={localMicOn}
       meetingID={meetingId}
+      localParticipant={localParticipant}
     />
   )
 }

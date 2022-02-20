@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './styles/VideoCallScreen.css'
-import { useMeeting } from "@videosdk.live/react-sdk"
+import { useMeeting, useParticipant } from "@videosdk.live/react-sdk"
 import { StoreContext } from "../../store/store"
 import { setDB, getRandomDocID } from '../../services/CrudDB'
 
@@ -8,9 +8,14 @@ export default function VideoCallScreen(props) {
 
   const { videoTrack, setVideoTrack, myUser } = useContext(StoreContext)
   const { ParticipantsView, ConnectionsView, participantViewVisible, leave,
-    toggleWebcam, toggleMic, localWebcamOn, localMicOn, meetingID } = props
+    toggleWebcam, toggleMic, localWebcamOn, localMicOn, meetingID,
+    toggleScreenShare, localParticipant } = props
+
+  const onStreamEnabled = (stream) => {}
+  const onStreamDisabled = (stream) => {}
   const [showTools, setShowTools] = useState(true)
   const { participants } = useMeeting()
+  const { screenShareOn, screenShareStream, webcamStream } = useParticipant(localParticipant?.id, { onStreamEnabled, onStreamDisabled })
   const participantsNum = participants.size
 
   const copyMeetingID = () => {
@@ -43,6 +48,10 @@ export default function VideoCallScreen(props) {
     }
   },[participants])
 
+  useEffect(() => {
+    toggleWebcam()
+  },[screenShareStream])
+
   return (
     <div className="video-call-screen">
       <div className={`videos-grid videos-grid-${participantsNum}`}>
@@ -62,12 +71,19 @@ export default function VideoCallScreen(props) {
           </div>
           <div 
             className={!localWebcamOn ? 'inactive' : 'active'}
-            onClick={toggleWebcam}
+            onClick={() => {
+              toggleWebcam()
+              screenShareOn && toggleScreenShare()
+            }}
           >
             <i className={`fal ${localWebcamOn ? "fa-video" : "fa-video-slash"}`}></i>
           </div>
-          <div>
+          <div 
+            className={screenShareOn ? 'active' : 'inactive'}
+            onClick={toggleScreenShare}
+          >
             <i className="fal fa-desktop"></i>
+            { !screenShareOn && <i className="fal fa-slash"></i>}
           </div>
           <div>
             <i className="fal fa-comment-alt"></i>

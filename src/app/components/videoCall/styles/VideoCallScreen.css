@@ -96,7 +96,7 @@
 }
 .video-call-screen .meeting-bar > div.inactive {
   filter: brightness(90%);
-  background: rgba(255,255,255,0.04);
+  
 }
 .video-call-screen .meeting-bar > div:active {
   filter: brightness(90%);
@@ -119,6 +119,10 @@
 }
 .video-call-screen .meeting-bar > div.red {
   background: var(--danger);
+}
+.video-call-screen .meeting-bar > div i.fa-slash {
+  position: absolute;
+  font-size: 24px;
 }
 
 .video-call-screen .participant-actions {
