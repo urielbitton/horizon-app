@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './styles/VideoCallScreen.css'
 import { useMeeting } from "@videosdk.live/react-sdk"
 import { StoreContext } from "../../store/store"
 
 export default function VideoCallScreen(props) {
 
-  const { setDisableWebcam } = useContext(StoreContext)
+  const { videoTrack, setVideoTrack } = useContext(StoreContext)
   const { ParticipantsView, ConnectionsView, participantViewVisible, leave,
     toggleWebcam, toggleMic, localWebcamOn, localMicOn, meetingID } = props
   const [showTools, setShowTools] = useState(true)
@@ -22,11 +22,11 @@ export default function VideoCallScreen(props) {
     })
   }
 
-  useEffect(() => {
-    return() => {
-      setDisableWebcam(true)
-    }
-  },[])
+  const endMeeting = () => {
+    leave()
+    videoTrack.stop()
+    setVideoTrack(null)
+  }
 
   return (
     <div className="video-call-screen">
@@ -60,9 +60,6 @@ export default function VideoCallScreen(props) {
           <div>
             <i className="fal fa-user-friends"></i>
           </div>
-          <div>
-            <i className="fas fa-th"></i>
-          </div>
           <div onClick={() => copyMeetingID()}>
             <i className="fal fa-info-circle"></i>
           </div>
@@ -71,7 +68,7 @@ export default function VideoCallScreen(props) {
           </div>
           <div 
             className="red"
-            onClick={leave}
+            onClick={() => endMeeting()}
           >
             <i className="fal fa-phone"></i>
           </div>

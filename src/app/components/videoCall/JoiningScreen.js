@@ -6,7 +6,7 @@ import { StoreContext } from "../../store/store"
 
 export default function JoiningScreen(props) {
 
-  const { videoTrack, setVideoTrack, setDisableWebcam } = useContext(StoreContext)
+  const { videoTrack, setVideoTrack } = useContext(StoreContext)
   const { joinMeetingID, setWebcamOn, setMicOn, micOn, webcamOn, 
     isCreate, setMeetingStarted } = props
   const [readyToJoin, setReadyToJoin] = useState(true)
@@ -94,12 +94,6 @@ export default function JoiningScreen(props) {
       requestJoinMeeting(meetingID)
     }
   },[meetingID])
-
-  useEffect(() => {
-    return() => {
-      setDisableWebcam(true)
-    }
-  },[])
 
   return (
     <div className="joining-screen">
