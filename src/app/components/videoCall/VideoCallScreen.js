@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './styles/VideoCallScreen.css'
 import { useMeeting } from "@videosdk.live/react-sdk"
+import { StoreContext } from "../../store/store"
 
 export default function VideoCallScreen(props) {
 
+  const { setDisableWebcam } = useContext(StoreContext)
   const { ParticipantsView, ConnectionsView, participantViewVisible, leave,
     toggleWebcam, toggleMic, localWebcamOn, localMicOn, meetingID } = props
   const [showTools, setShowTools] = useState(true)
@@ -20,6 +22,12 @@ export default function VideoCallScreen(props) {
     })
   }
 
+  useEffect(() => {
+    return() => {
+      setDisableWebcam(true)
+    }
+  },[])
+
   return (
     <div className="video-call-screen">
       <div className={`videos-grid videos-grid-${participantsNum}`}>
@@ -32,13 +40,13 @@ export default function VideoCallScreen(props) {
       <div className="meeting-bar-container">
         <div className={`meeting-bar ${!showTools ? 'hide' : ''}`}>
           <div 
-            className={!localMicOn ? 'inactive' : ''}
+            className={!localMicOn ? 'inactive' : 'active'}
             onClick={toggleMic}
           >
             <i className={`fal ${localMicOn ? "fa-microphone" : "fa-microphone-slash"}`}></i>
           </div>
           <div 
-            className={!localWebcamOn ? 'inactive' : ''}
+            className={!localWebcamOn ? 'inactive' : 'active'}
             onClick={toggleWebcam}
           >
             <i className={`fal ${localWebcamOn ? "fa-video" : "fa-video-slash"}`}></i>

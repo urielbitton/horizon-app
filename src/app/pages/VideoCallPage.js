@@ -6,19 +6,10 @@ import { StoreContext } from '../store/store'
 import VideoCallScreen from "../components/videoCall/VideoCallScreen"
 import { useHistory } from "react-router-dom"
 
-const primary = "#131C55";
-const width = 400;
-const height = (width * 2) / 3;
-const borderRadius = 8;
-
 const chunk = (arr) => {
   const newArr = [];
   while (arr.length) newArr.push(arr.splice(0, 3));
   return newArr;
-};
-
-const Title = ({ title, dark }) => {
-  return <h2 style={{ color: dark ? primary : "#fff" }}>{title}</h2>;
 };
 
 const ExternalVideo = () => {
@@ -66,19 +57,10 @@ const ExternalVideo = () => {
   const externalPlayer = useRef();
 
   return !link ? null : (
-    <div
-      style={{
-        borderRadius,
-        padding: borderRadius,
-        margin: borderRadius,
-        backgroundColor: primary,
-        display: "flex",
-      }}
-    >
-      <Title title={"External Video"} />
-
+    <div>
+      <h1>External Video</h1>
       <video
-        style={{ borderRadius, height, width, backgroundColor: "black" }}
+        style={{height:'300px', width:  '300px', backgroundColor: "black" }}
         autoPlay
         ref={externalPlayer}
         src={link}
@@ -249,20 +231,7 @@ const ConnectionView = ({ connectionId }) => {
   };
 
   return (
-    <div
-      style={{
-        width,
-        backgroundColor: primary,
-        borderRadius: borderRadius,
-        overflow: "hidden",
-        margin: borderRadius,
-        padding: borderRadius,
-        display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        position: "relative",
-      }}
-    >
+    <div>
       <button
         onClick={() => {
           connection.close();
@@ -311,15 +280,8 @@ const ConnectionView = ({ connectionId }) => {
 const ConnectionsView = () => {
   const { connections, meetingId } = useMeeting();
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "column",
-        padding: borderRadius,
-      }}
-    >
-      <Title dark title={"Connections"} />
+    <div>
+      <h1>Connections</h1>
       {chunk([...connections.keys()]).map((k) => (
         <div style={{ display: "flex" }} key={k}>
           {k.map((l) => (

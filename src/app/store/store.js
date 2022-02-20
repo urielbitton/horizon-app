@@ -13,9 +13,17 @@ const StoreContextProvider = ({children}) => {
   const [windowPadding, setWindowPadding] = useState("100px 30px 0px 30px")
   const [openSidebar, setOpenSidebar] = useState(false)
   const [darkMode, setDarkMode] = useState(localStorage.getItem('darkmode') === "true" ? true : false)
+  const [videoTrack, setVideoTrack] = useState(null)
+  const [disableWebcam, setDisableWebcam] = useState(false)
 
   const currencyFormat = new Intl.NumberFormat('en-CA', {style: 'currency', currency: 'CAD'})
   const percentFormat = new Intl.NumberFormat('en-CA', {style: 'percent'})
+
+  useEffect(() => {
+    if(videoTrack && disableWebcam) {
+      videoTrack.stop()
+    }
+  },[disableWebcam])
 
   useEffect(() => {
     if(user) {
@@ -29,6 +37,7 @@ const StoreContextProvider = ({children}) => {
   useEffect(() => {
     localStorage.setItem('darkmode', !darkMode ? "false" : "true")  
   },[darkMode])  
+  
 
   return <StoreContext.Provider value={{ 
     user, myUser, setMyUser, aUser, setAUser, 
@@ -38,6 +47,7 @@ const StoreContextProvider = ({children}) => {
     openSidebar, setOpenSidebar,
     darkMode, setDarkMode,
     currencyFormat, percentFormat,
+    videoTrack, setVideoTrack, setDisableWebcam
   }}>
     {children}
   </StoreContext.Provider>

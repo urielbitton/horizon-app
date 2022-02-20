@@ -102,7 +102,8 @@
   filter: brightness(90%);
   transform: scale(0.97)
 }
-.video-call-screen .meeting-bar > div:hover {
+.video-call-screen .meeting-bar > div:hover,
+.video-call-screen .meeting-bar > div.active {
   background: rgba(255,255,255,0.06);
 }
 .video-call-screen .meeting-bar > div:hover i {

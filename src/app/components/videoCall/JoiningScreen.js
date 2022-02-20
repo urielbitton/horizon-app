@@ -1,25 +1,27 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import './styles/JoiningScreen.css'
 import AppButton from "../ui/AppButton"
 import { createMeeting, getToken, validateMeeting } from "./api"
+import { StoreContext } from "../../store/store"
 
 export default function JoiningScreen(props) {
 
-  const { joinMeetingID, setWebcamOn, setMicOn, micOn, webcamOn, isCreate } = props
+  const { videoTrack, setVideoTrack, setDisableWebcam } = useContext(StoreContext)
+  const { joinMeetingID, setWebcamOn, setMicOn, micOn, webcamOn, 
+    isCreate, setMeetingStarted } = props
   const [readyToJoin, setReadyToJoin] = useState(true)
   const [meetingID, setMeetingID] = useState('')
   const videoPlayerRef = useRef()
-  const [videoTrack, setVideoTrack] = useState(null)
   const [token, setToken] = useState('')
   const allowStartMeeting = meetingID.length && token.length
 
   const handleToggleWebcam = () => {
     if (!webcamOn) {
       getVideo()
-    } else {
+    } 
+    else {
       if (videoTrack) {
-        videoTrack.stop()
-        setVideoTrack(null)
+        stopVideo()
       } 
     }
     setWebcamOn(prev => !prev)
@@ -39,6 +41,12 @@ export default function JoiningScreen(props) {
       videoPlayerRef.current.play()
       setVideoTrack(videoTrack)
     }
+  }
+  
+  const stopVideo = () => {
+    videoTrack.stop()
+    setVideoTrack(null)
+    setMeetingStarted(false)
   }
 
   const generateMeetingID = async () => {
@@ -87,8 +95,22 @@ export default function JoiningScreen(props) {
     }
   },[meetingID])
 
+  useEffect(() => {
+    return() => {
+      setDisableWebcam(true)
+    }
+  },[])
+
   return (
     <div className="joining-screen">
+      <header>
+        <div 
+          className="back-container"
+          onClick={() => stopVideo()}
+        >
+          <i className="fal fa-arrow-left"></i>
+        </div>
+      </header>
       <div className="preview-container">
         <video
           autoPlay

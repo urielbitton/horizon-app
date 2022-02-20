@@ -37,6 +37,7 @@ export default function CreateAMeeting() {
         micOn={micOn}
         webcamOn={webcamOn}
         setWebcamOn={setWebcamOn}
+        setMeetingStarted={setMeetingStarted}
         isCreate
       />
   )
