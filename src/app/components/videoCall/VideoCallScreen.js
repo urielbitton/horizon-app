@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './styles/VideoCallScreen.css'
 import { useMeeting } from "@videosdk.live/react-sdk"
 import { StoreContext } from "../../store/store"
+import { setDB, getRandomDocID } from '../../services/CrudDB'
 
 export default function VideoCallScreen(props) {
 
-  const { videoTrack, setVideoTrack } = useContext(StoreContext)
+  const { videoTrack, setVideoTrack, myUser } = useContext(StoreContext)
   const { ParticipantsView, ConnectionsView, participantViewVisible, leave,
     toggleWebcam, toggleMic, localWebcamOn, localMicOn, meetingID } = props
   const [showTools, setShowTools] = useState(true)
@@ -27,6 +28,20 @@ export default function VideoCallScreen(props) {
     videoTrack.stop()
     setVideoTrack(null)
   }
+
+  useEffect(() => {
+    if(participantsNum === 2) {
+      const path = `users/${myUser?.userID}/videoMeetings`
+      const docID = getRandomDocID(path)
+      setDB(path, docID, {
+        duration: 0,
+        meetingDate: new Date(),
+        meetingID,
+        participants: [],
+        videoMeetingID: docID
+      }) 
+    }
+  },[participants])
 
   return (
     <div className="video-call-screen">
