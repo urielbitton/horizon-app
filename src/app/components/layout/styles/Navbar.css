@@ -53,7 +53,6 @@
 .navbar .nav-icon-btn:hover i,
 .navbar .nav-icon-btn i.active {
   color: var(--primary);
-  font-weight: 600;
 }
 .navbar .nav-icon-btn i.fa-comment-alt {
   font-size: 18px;
@@ -141,7 +140,7 @@
   top: calc(var(--navbarHeight) - 15px);
 }
 .nav-profile-container .profile-slide a {
-  padding: 10px;
+  padding: 15px 10px;
   font-size: 14px;
   font-weight: 600;
   transition: all 0.2s;

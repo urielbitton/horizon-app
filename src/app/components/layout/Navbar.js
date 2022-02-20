@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
+import './styles/Navbar.css'
 import { Link } from 'react-router-dom'
 import { StoreContext } from '../../store/store'
-import './styles/Navbar.css'
 import { auth } from '../../firebase/fire'
 import NotificationsDropdown from "./NotificationsDropdown"
 import { useLocation } from "react-router-dom"
@@ -10,7 +10,7 @@ import SearchBar from '../ui/SearchBar'
 
 export default function Navbar() {
 
-  const {user, myUser, openSidebar, setOpenSidebar, darkMode, setDarkMode} = useContext(StoreContext)
+  const {user, myUser, openSidebar, setOpenSidebar, videoTrack, setVideoTrack } = useContext(StoreContext)
   const [slideProfile, setSlideProfile] = useState(false)
   const [slideNotifs, setSlideNotifs] = useState(false)
   const location = useLocation()
@@ -30,6 +30,11 @@ export default function Navbar() {
       e.stopPropagation()
       setSlideNotifs(prev => !prev)
     }
+  }
+
+  const disableWebcam = () => {
+    videoTrack.stop()
+    setVideoTrack(null)
   }
 
   useEffect(() => {
@@ -55,11 +60,21 @@ export default function Navbar() {
         <SearchBar showIcon />
       </div>
       <div className="side right">
+        {
+          videoTrack &&
+          <div 
+            className="nav-icon-btn"
+            onClick={() => disableWebcam()}
+            title="Disable Webcam"
+          >
+            <i className="fas fa-webcam-slash"></i>
+          </div>
+        }
         <div className="nav-icon-btn">
-          <i className="fas fa-comment-alt"></i>
+          <i className="far fa-comment-alt"></i>
         </div>
         <div className="nav-icon-btn">
-          <i className="fas fa-bell"></i>
+          <i className="far fa-bell"></i>
         </div>
         <div className={`notifications-dropdown ${slideNotifs ? "open" : ""}`}>
           <NotificationsDropdown 
