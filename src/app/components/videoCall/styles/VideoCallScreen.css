@@ -124,6 +124,14 @@
   position: absolute;
   font-size: 24px;
 }
+.video-call-screen .meeting-bar > div.active i.fa-record-vinyl {
+  animation: record 1s linear infinite;
+}
+@keyframes record {
+  0% {color: var(--danger)}
+  50% {color: rgba(255,255,255,0.85)}
+  100% {color: var(--danger)}
+}
 
 .video-call-screen .participant-actions {
   width: 100%;
