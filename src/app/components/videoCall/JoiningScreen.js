@@ -13,7 +13,7 @@ export default function JoiningScreen(props) {
   const [meetingID, setMeetingID] = useState('')
   const videoPlayerRef = useRef()
   const [token, setToken] = useState('')
-  const allowStartMeeting = meetingID.length && token.length
+  const allowStartMeeting = meetingID?.length && token?.length
 
   const handleToggleWebcam = () => {
     if (!webcamOn) {
@@ -36,7 +36,7 @@ export default function JoiningScreen(props) {
       }
       const stream = await navigator.mediaDevices.getUserMedia(videoConstraints)
       const videoTracks = stream.getVideoTracks()
-      const videoTrack = videoTracks.length ? videoTracks[0] : null
+      const videoTrack = videoTracks?.length ? videoTracks[0] : null
       videoPlayerRef.current.srcObject = new MediaStream([videoTrack])
       videoPlayerRef.current.play()
       setVideoTrack(videoTrack)
@@ -90,7 +90,7 @@ export default function JoiningScreen(props) {
   },[])
 
   useEffect(() => {
-    if(!isCreate && meetingID.length) {
+    if(!isCreate && meetingID?.length) {
       requestJoinMeeting(meetingID)
     }
   },[meetingID])

@@ -27,6 +27,13 @@ export default function ChatBar(props) {
     </div>
   })
 
+  const handleEnterSend = (e) => {
+    if(e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault()
+      sendMessage()
+    }
+  }
+
   const sendMessage = () => {
     if (message.length) {
       sendChatMessage(message)
@@ -55,6 +62,7 @@ export default function ChatBar(props) {
             className="app-textarea"
             onChange={(e) => setMessage(e.target.value)}
             value={message}
+            onKeyUp={(e) => handleEnterSend(e)}
           />
           <i 
             className="fal fa-paper-plane send-btn"

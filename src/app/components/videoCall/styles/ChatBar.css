@@ -68,6 +68,9 @@
   color: #333;
   padding-right: 45px;
 }
+.meeting-chat-bar .app-textarea::-webkit-scrollbar {
+  display: none;
+}
 .meeting-chat-bar .app-textarea::placeholder {
   color: #aaa;
   font-weight: 300;
