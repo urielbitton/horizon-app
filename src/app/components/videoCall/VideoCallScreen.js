@@ -3,6 +3,7 @@ import './styles/VideoCallScreen.css'
 import { useMeeting, useParticipant } from "@videosdk.live/react-sdk"
 import { StoreContext } from "../../store/store"
 import { setDB, getRandomDocID } from '../../services/CrudDB'
+import ChatBar from "./ChatBar"
 
 export default function VideoCallScreen(props) {
 
@@ -13,10 +14,10 @@ export default function VideoCallScreen(props) {
   const onStreamEnabled = (stream) => {}
   const onStreamDisabled = (stream) => {}
   const [showTools, setShowTools] = useState(true)
+  const [showChatBar, setShowChatBar] = useState(false)
   const { participants, isRecording, startRecording, stopRecording } = useMeeting()
   const { screenShareOn, screenShareStream } = useParticipant(localParticipant?.id, { onStreamEnabled, onStreamDisabled })
   const participantsNum = participants.size
-  console.log(isRecording)
 
   const copyMeetingID = () => {
     navigator.clipboard.writeText(meetingID)
@@ -39,7 +40,6 @@ export default function VideoCallScreen(props) {
       const path = `users/${myUser?.userID}/videoMeetings`
       const docID = getRandomDocID(path)
       setDB(path, docID, {
-        duration: 0,
         meetingDate: new Date(),
         meetingID,
         participants: [],
@@ -88,7 +88,11 @@ export default function VideoCallScreen(props) {
             <i className="fal fa-desktop"></i>
             { !screenShareOn && <i className="fal fa-slash"></i>}
           </div>
-          <div title="Open Chats">
+          <div 
+            className={showChatBar ? 'active' : 'inactive'}
+            title="Open Chats"
+            onClick={() => setShowChatBar(prev => !prev)}
+          >
             <i className="fal fa-comment-alt"></i>
           </div>
           <div className="View Participants">
@@ -119,6 +123,11 @@ export default function VideoCallScreen(props) {
           <i className={showTools ? 'fal fa-times' : 'fal fa-bars'}></i>
         </div>
       </div>
+      <ChatBar 
+        showChatBar={showChatBar}
+        setShowChatBar={setShowChatBar}
+        localParticipant={localParticipant}
+      />
     </div>
   )
 }

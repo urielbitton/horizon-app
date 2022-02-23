@@ -1,0 +1,132 @@
+.meeting-chat-bar {
+  position: fixed;
+  top: 0;
+  left: -400px;
+  height: 100vh;
+  width: 320px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 15px 7px rgba(0,0,0,0.1);
+  transition: left 0.3s;
+  background: #fff;
+}
+.meeting-chat-bar.show {
+  left: 0;
+}
+.meeting-chat-bar header {
+  padding: 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.meeting-chat-bar header h3 {
+  color: #333;
+  font-size: 22px;
+  font-weight: 500;
+}
+.meeting-chat-bar header i {
+  font-size: 25px;
+  color: #333;
+  cursor: pointer;
+}
+.meeting-chat-bar section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 30px);
+  overflow-y: hidden;
+}
+.meeting-chat-bar section .messages-flex {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 15px;
+  overflow-y: overlay;
+}
+.meeting-chat-bar section .messages-flex::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+.meeting-chat-bar section:hover .messages-flex::-webkit-scrollbar {
+  display: block;
+}
+.meeting-chat-bar footer {
+  padding: 15px;
+}
+.meeting-chat-bar .textarea-container {
+  width: 100%;
+}
+.meeting-chat-bar .app-textarea {
+  background: none;
+  border-color: var(--primary);
+  resize: none;
+  color: #333;
+  padding-right: 45px;
+}
+.meeting-chat-bar .app-textarea::placeholder {
+  color: #aaa;
+  font-weight: 300;
+}
+.meeting-chat-bar .textarea-container .send-btn {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  font-size: 20px;
+  color: var(--primary);
+  z-index: 10;
+  cursor: pointer;
+}
+.meeting-chat-bar .chat-bubble-container {
+  width: 100%;
+  display: flex;
+}
+.meeting-chat-bar .chat-bubble-container.me {
+  flex-direction: row-reverse;
+}
+.meeting-chat-bar .chat-bubble-container .chat-text {
+  display: flex;
+  flex-direction: column;
+}
+.meeting-chat-bar .chat-bubble-container small {
+  color: #555;
+  font-size: 11px;
+  padding-left: 5px;
+  padding-top: 5px;
+  display: flex;
+  align-self: flex-start;
+}
+.meeting-chat-bar .chat-bubble-container.me small {
+  padding-left: 0px;
+  padding-right: 5px;
+  align-self: flex-end;
+}
+.meeting-chat-bar .chat-bubble-container .chat-bubble {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--primary);
+}
+.meeting-chat-bar .chat-bubble-container.me .chat-bubble {
+  background: #e5e5e5;
+}
+.meeting-chat-bar .chat-bubble-container .chat-bubble h6 {
+  color: #eee;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.meeting-chat-bar .chat-bubble-container .chat-bubble p {
+  color: #fff;
+  font-weight: 300;
+  word-break: break-all;
+}
+.meeting-chat-bar .chat-bubble-container.me .chat-bubble h6 {
+  color: #333;
+}
+.meeting-chat-bar .chat-bubble-container.me .chat-bubble p {
+  color: #333;
+  font-weight: 500;
+}

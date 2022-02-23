@@ -335,7 +335,7 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
   function onMeetingLeft() {
     console.log("onMeetingLeft");
     onMeetingLeave()
-    history.push('/join-meeting')
+    history.push('/create-meeting')
   }
   const onLiveStreamStarted = (data) => {
     console.log("onLiveStreamStarted example", data);
