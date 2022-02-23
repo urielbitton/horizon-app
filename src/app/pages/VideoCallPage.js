@@ -85,7 +85,6 @@ const ParticipantView = ({ participantId }) => {
     disableWebcam, pin, unpin 
   } = useParticipant(participantId, { onStreamEnabled, onStreamDisabled })
   const { localParticipant, activeSpeakerId } = useMeeting()
-  const localSpeaking = localParticipant.id === activeSpeakerId
   console.log(screenShareOn)
 
   useEffect(() => {
@@ -143,7 +142,7 @@ const ParticipantView = ({ participantId }) => {
   }, [screenShareStream, screenShareOn])
 
   return (
-    <div className={`video-container ${localSpeaking ? 'speaking' : ''}`}>
+    <div className={`video-container ${isActiveSpeaker ? 'speaking' : ''}`}>
       <audio 
         ref={micRef} 
         autoPlay 
@@ -169,7 +168,7 @@ const ParticipantView = ({ participantId }) => {
             <i className="fal fa-microphone-slash"></i>
           </div>
         }
-        <div className={`icon-container speakingIcon ${localSpeaking ? 'show' : ''}`}>
+        <div className={`icon-container speakingIcon ${isActiveSpeaker ? 'show' : ''}`}>
           <i className='fal fa-waveform'></i>
         </div>
       </div>

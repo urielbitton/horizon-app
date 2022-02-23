@@ -118,7 +118,10 @@
   font-size: 30px;
 }
 .video-call-screen .meeting-bar > div.red {
-  background: var(--danger);
+  background: #dd3849;
+}
+.video-call-screen .meeting-bar > div.red:hover {
+  background: #525252;
 }
 .video-call-screen .meeting-bar > div i.fa-slash {
   position: absolute;
