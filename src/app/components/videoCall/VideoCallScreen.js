@@ -54,7 +54,7 @@ export default function VideoCallScreen(props) {
 
   return (
     <div className="video-call-screen">
-      <div className={`videos-grid videos-grid-${participantsNum}`}>
+      <div className={`videos-grid`}>
         {
           participantViewVisible ? 
           <ParticipantsView /> : 
