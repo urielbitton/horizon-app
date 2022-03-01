@@ -1,0 +1,7 @@
+.chat-window {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--grayBorder);
+  border-radius: 10px;
+}

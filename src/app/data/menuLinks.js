@@ -18,7 +18,7 @@ export const menuLinks = [
     exact: true
   },
   {
-    name: 'Chat Messages', 
+    name: 'Messages', 
     icon: 'fal fa-comments', 
     url: '/chat-messages', 
     exact: true

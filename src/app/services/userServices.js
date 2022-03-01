@@ -19,3 +19,14 @@ export const getContactsByUserID = (userID, setContacts, limit) => {
     setContacts(contactsArr)
   })
 }
+
+export const getAllChatsByUser = (userChats, setChats) => {
+  db.collection('chats')
+  .where('chatID', 'in', userChats ?? [''])
+  .orderBy('dateCreated', 'desc')
+  .onSnapshot(snap => {
+    const chatsArr = []
+    snap.forEach(doc => chatsArr.push(doc.data()))
+    setChats(chatsArr)
+  })
+}

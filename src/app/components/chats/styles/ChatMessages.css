@@ -1,0 +1,7 @@
+.chat-flex {
+  width: 100%;
+  height: calc(100vh - var(--navbarHeight) - 40px);
+  display: grid;
+  grid-template-columns: 350px auto;
+  grid-gap: 10px;
+}

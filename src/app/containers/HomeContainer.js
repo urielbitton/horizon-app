@@ -41,7 +41,7 @@ export default function HomeContainer() {
           <Route exact path="/voice-calls">
             <VoiceCalls />
           </Route>
-          <Route exact path="/chat-messages">
+          <Route path="/chat-messages">
             <ChatMessages />
           </Route>
           <Route exact path="/contacts">

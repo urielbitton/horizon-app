@@ -3,20 +3,14 @@ import './styles/AppInputs.css'
 
 export function AppInput(props) {
  
-  const {title, iconclass, className, descriptText} = props
+  const {title, className, leftContainer, rightContainer} = props
    
   return ( 
-    <label className={`appinput commoninput ${className?className:""} ${descriptText?"descriptinput":""}`}> 
+    <label className={`appinput commoninput ${className ? className : ""}`}> 
       { title && <h6>{title}</h6> }
-      <i className={iconclass}></i> 
-      {
-        descriptText?<div>
-          <input style={{paddingRight: iconclass?"40px":"10px"}} {...props} />
-          <span></span>
-          <small className="descript">{descriptText}</small>
-        </div>:
-        <input style={{paddingRight: iconclass?"40px":"10px"}} {...props} />
-      }
+      <input {...props} />
+      {leftContainer}
+      {rightContainer}
     </label>
   )   
 }     

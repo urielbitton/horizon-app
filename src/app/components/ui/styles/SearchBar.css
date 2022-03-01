@@ -31,7 +31,7 @@
   border: none;
 }
 .searchbar input::placeholder {
-  font-weight: 600;
+  font-weight: 500;
   color: #d5d5d5;
 }
 .searchbar.focusable input:focus {

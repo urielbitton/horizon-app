@@ -57,7 +57,10 @@ export default function Navbar() {
         >
           <i className="fal fa-bars"></i>
         </div>
-        <SearchBar showIcon />
+        <SearchBar 
+          placeholder="Search..."
+          showIcon 
+        />
       </div>
       <div className="side right">
         {

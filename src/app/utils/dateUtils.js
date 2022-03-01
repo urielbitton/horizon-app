@@ -31,6 +31,29 @@ export const getDaysAgo = (date) => {
   return Math.round(msToDays(Date.now()) - msToDays(date))
 }
 
+export const msToHours = (ms) => {
+  return (ms / (60*60*1000))
+}
+
+export const getHoursAgo = (date) => { 
+  return msToHours(Date.now()) - msToHours(date?.toDate())
+}
+
+export const getTimeAgo = (date) => {
+  if(getHoursAgo(date) <= 23) {
+    if(getHoursAgo(date) >= 1) {
+      return `${getHoursAgo(date).toFixed(0)} hour${Math.round(getHoursAgo(date)) !== 1 ? "s" : ""} ago`
+    }
+    else if(getHoursAgo(date) <= 0.0166667) {//less than a minute
+      return 'Just Now'
+    }
+    else {
+      return `${(getHoursAgo(date) * 60).toFixed(0)} minute${Math.round(getHoursAgo(date) * 60) !== 1 ? "s" : ""} ago`
+    }
+  }
+  return convertFireDateToString(date)
+}
+
 export const formatAMPM = (date) => {
   let hours = date?.getHours();
   let minutes = date?.getMinutes();
