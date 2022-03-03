@@ -15,7 +15,7 @@ export default function ChatSidebar() {
   const chatsRender = chats?.map((chat, i) => {
     return <ChatCard 
       chat={chat} 
-      i={i}
+      key={i}
     />
   })
 
